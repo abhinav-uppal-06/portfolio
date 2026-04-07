@@ -17,7 +17,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:none;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:auto;}
 .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,185,140,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
@@ -148,13 +148,13 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   <div class="contact-left">
     <div class="contact-label reveal">Direct Contact</div>
 
-    <a href="mailto:workxabhinav@gmail.com" class="contact-method reveal">
+    <a href="/cdn-cgi/l/email-protection#384f574a5340595a505156594e785f55595154165b5755" class="contact-method reveal">
       <div class="contact-method-icon">
         <svg viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1"/><path d="M2 5l7 5 7-5" stroke="currentColor" stroke-width="1"/></svg>
       </div>
       <div>
         <div class="contact-method-label">Email</div>
-        <div class="contact-method-val">workxabhinav@gmail.com</div>
+        <div class="contact-method-val"><span class="__cf_email__" data-cfemail="62150d10091a03000a0b0c031422050f030b0e4c010d0f">[email&#160;protected]</span></div>
       </div>
       <div class="contact-method-arrow">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1"/></svg>
@@ -264,7 +264,7 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   <span class="footer-copy">© 2026 Abhinav Uppal · Dublin</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
@@ -285,14 +285,4 @@ function handleSubmit() {
   const subject = document.getElementById('subject').value || 'Portfolio Enquiry';
   const lname = document.getElementById('lname').value;
   const body = `Hi Abhinav,\n\n${message}\n\nBest,\n${name} ${lname}`;
-  const mailto = `mailto:workxabhinav@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
-  // Show success
-  setTimeout(() => {
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').classList.add('show');
-  }, 800);
-}
-</script>
-</body>
-</html>
+  const mailto = `mailto:workxabhinav@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body
