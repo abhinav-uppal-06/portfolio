@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Lab Abhinav Uppal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#09090E; --bg-2:#0F0F16; --bg-3:#14141C;
+  --gold:#C8B98C; --gold-dim:rgba(200,185,140,0.18); --gold-faint:rgba(200,185,140,0.06);
+  --text:#E8E6E0; --text-muted:rgba(232,230,224,0.55); --text-faint:rgba(232,230,224,0.32);
+  --border:rgba(200,185,140,0.12); --border-hover:rgba(200,185,140,0.3);
+  --serif:'Playfair Display',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+  --c1:#4A7C8E; --c2:#6B8E6B; --c3:#8E6B4A; --c4:#7A5C8E;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:auto;}
+.cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,185,140,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(9,9,14,0.82);border-bottom:0.5px solid var(--border);transition:padding .3s;}
+nav.scrolled{padding:13px 48px;}
+.nav-logo{font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--gold);text-decoration:none;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+.nav-cta{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:10px 22px;border:none;cursor:none;border-radius:2px;text-decoration:none;transition:opacity .2s;}
+.nav-cta:hover{opacity:.88;}
+
+/* PAGE HEADER */
+.page-header{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:160px 48px 64px;}
+.page-eyebrow{font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .7s ease forwards .1s;}
+.page-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.page-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);font-weight:400;line-height:1.06;color:var(--text);margin-bottom:24px;opacity:0;animation:fadeUp .7s ease forwards .2s;}
+.page-title em{font-style:italic;color:var(--gold);}
+.page-desc{font-size:15px;font-weight:300;line-height:1.8;color:var(--text-muted);max-width:620px;opacity:0;animation:fadeUp .7s ease forwards .35s;}
+
+/* MODULE BADGE */
+.module-badge{display:inline-flex;align-items:center;gap:10px;background:var(--gold-faint);border:0.5px solid var(--gold-dim);padding:10px 20px;border-radius:2px;margin-top:24px;opacity:0;animation:fadeUp .7s ease forwards .45s;}
+.module-badge-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+.module-badge-val{font-size:12px;font-weight:300;color:var(--text-muted);}
+
+/* SECTION COMMONS */
+.pm-section{position:relative;z-index:1;border-top:0.5px solid var(--border);}
+.pm-inner{max-width:1400px;margin:0 auto;padding:80px 48px;}
+.sec-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.sec-title{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--text);margin-bottom:8px;}
+.sec-desc{font-size:13.5px;font-weight:300;color:var(--text-muted);line-height:1.75;max-width:680px;margin-bottom:48px;}
+
+/* ── WBS TREE ── */
+.wbs-root{display:flex;flex-direction:column;align-items:center;gap:0;}
+.wbs-root-node{background:var(--gold);color:var(--bg);font-family:var(--serif);font-size:15px;font-weight:500;padding:14px 32px;border-radius:2px;text-align:center;margin-bottom:0;position:relative;z-index:2;}
+.wbs-root-line{width:1px;height:32px;background:var(--gold-dim);margin:0 auto;}
+.wbs-branches{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;width:100%;position:relative;}
+.wbs-branches::before{content:'';position:absolute;top:0;left:12.5%;right:12.5%;height:1px;background:var(--gold-dim);}
+.wbs-branch{display:flex;flex-direction:column;align-items:center;position:relative;}
+.wbs-branch::before{content:'';position:absolute;top:0;left:50%;width:1px;height:20px;background:var(--gold-dim);}
+.wbs-branch-node{margin-top:20px;width:100%;padding:14px 16px;border-radius:3px;text-align:center;font-size:12px;font-weight:500;letter-spacing:.04em;border:0.5px solid;}
+.wbs-b1{background:rgba(74,124,142,0.12);border-color:rgba(74,124,142,0.4);color:#7BB8CC;}
+.wbs-b2{background:rgba(107,142,107,0.12);border-color:rgba(107,142,107,0.4);color:#8DBE8D;}
+.wbs-b3{background:rgba(142,107,74,0.12);border-color:rgba(142,107,74,0.4);color:#C49066;}
+.wbs-b4{background:rgba(122,92,142,0.12);border-color:rgba(122,92,142,0.4);color:#A87DC4;}
+.wbs-children{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:12px;position:relative;}
+.wbs-children::before{content:'';position:absolute;top:0;left:50%;width:1px;height:12px;background:var(--gold-dim);}
+.wbs-child{margin-top:0;width:100%;padding:9px 12px;background:var(--bg-2);border:0.5px solid var(--border);border-radius:2px;font-size:11px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.4;transition:border-color .2s,color .2s;cursor:default;position:relative;}
+.wbs-child::before{content:'';position:absolute;top:0;left:50%;width:1px;height:8px;background:var(--border);}
+.wbs-child:hover{border-color:var(--gold-dim);color:var(--text);}
+.wbs-child.new-item{border-style:dashed;}
+
+/* ── GANTT ── */
+.gantt-wrap{overflow-x:auto;border:0.5px solid var(--border);border-radius:4px;background:var(--bg-2);}
+.gantt-table{width:100%;min-width:900px;border-collapse:collapse;}
+.gantt-header{display:grid;grid-template-columns:240px 1fr;border-bottom:0.5px solid var(--border);}
+.gantt-header-task{padding:14px 20px;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);border-right:0.5px solid var(--border);}
+.gantt-weeks{display:grid;grid-template-columns:repeat(21,1fr);}
+.gantt-week-label{padding:14px 0;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);text-align:center;border-right:0.5px solid rgba(200,185,140,0.06);}
+.gantt-row{display:grid;grid-template-columns:240px 1fr;border-bottom:0.5px solid rgba(200,185,140,0.06);}
+.gantt-row:last-child{border-bottom:none;}
+.gantt-row.phase-row .gantt-task-label{font-weight:500;color:var(--text);font-size:11px;letter-spacing:.04em;}
+.gantt-task-label{padding:10px 20px;font-size:11px;font-weight:300;color:var(--text-muted);border-right:0.5px solid var(--border);display:flex;align-items:center;gap:8px;line-height:1.4;}
+.gantt-task-label .phase-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.gantt-bar-row{display:grid;grid-template-columns:repeat(21,1fr);position:relative;align-items:center;}
+.gantt-cell{height:36px;border-right:0.5px solid rgba(200,185,140,0.04);}
+.gantt-bar{position:absolute;height:18px;border-radius:2px;top:50%;transform:translateY(-50%);display:flex;align-items:center;padding:0 8px;font-family:var(--mono);font-size:8px;color:rgba(9,9,14,0.85);font-weight:400;letter-spacing:.06em;white-space:nowrap;overflow:hidden;}
+.gantt-bar.complete{opacity:1;}
+.gantt-bar.inprogress{opacity:.85;}
+.gantt-bar.planned{opacity:.45;border:0.5px dashed rgba(200,185,140,0.4);background:transparent!important;color:var(--text-faint);}
+.today-line{position:absolute;top:0;bottom:0;width:1px;background:var(--gold);opacity:.6;z-index:5;}
+.today-label{position:absolute;top:4px;font-family:var(--mono);font-size:7px;color:var(--gold);letter-spacing:.1em;transform:translateX(-50%);white-space:nowrap;}
+
+/* bar colours */
+.bc1{background:rgba(74,124,142,0.7);}
+.bc2{background:rgba(107,142,107,0.7);}
+.bc3{background:rgba(142,107,74,0.7);}
+.bc4{background:rgba(122,92,142,0.7);}
+.bc0{background:rgba(200,185,140,0.6);}
+
+/* legend */
+.gantt-legend{display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:300;color:var(--text-muted);}
+.legend-bar{width:24px;height:8px;border-radius:1px;}
+.legend-bar.planned{background:transparent;border:0.5px dashed rgba(200,185,140,0.4);}
+
+/* ── STAKEHOLDER MATRIX ── */
+.stakeholder-matrix{display:grid;grid-template-columns:40px 1fr;grid-template-rows:1fr 40px;gap:0;height:480px;}
+.matrix-y-label{writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);grid-row:1;grid-column:1;}
+.matrix-x-label{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);grid-row:2;grid-column:2;}
+.matrix-grid{grid-row:1;grid-column:2;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;border:0.5px solid var(--border);border-radius:4px;overflow:hidden;}
+.matrix-cell{padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;border:0.5px solid var(--border);}
+.matrix-cell-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);margin-bottom:16px;}
+.matrix-quadrant-title{font-family:var(--serif);font-size:13px;font-weight:400;color:var(--text-muted);font-style:italic;margin-bottom:12px;}
+.stakeholder-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:300;color:var(--text);background:var(--bg-3);border:0.5px solid var(--border);padding:7px 12px;border-radius:2px;margin:4px 0;width:100%;transition:border-color .2s;}
+.stakeholder-tag:hover{border-color:var(--gold-dim);}
+.sh-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sh-sub{font-size:10px;color:var(--text-faint);font-weight:300;margin-top:1px;}
+.cell-tl{background:rgba(107,142,107,0.04);}
+.cell-tr{background:rgba(74,124,142,0.04);}
+.cell-bl{background:rgba(200,185,140,0.02);}
+.cell-br{background:rgba(142,107,74,0.04);}
+.axis-arrow{position:absolute;font-size:10px;color:var(--text-faint);}
+
+/* ── TIMESHEET ── */
+.timesheet-table{width:100%;border-collapse:collapse;}
+.timesheet-table th{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);padding:12px 16px;border-bottom:0.5px solid var(--border);text-align:left;background:var(--bg-2);}
+.timesheet-table td{padding:12px 16px;font-size:12.5px;font-weight:300;color:var(--text-muted);border-bottom:0.5px solid rgba(200,185,140,0.06);}
+.timesheet-table tr:hover td{background:rgba(200,185,140,0.03);}
+.phase-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:20px;}
+.ph1{background:rgba(74,124,142,0.15);color:#7BB8CC;}
+.ph2{background:rgba(107,142,107,0.15);color:#8DBE8D;}
+.ph3{background:rgba(142,107,74,0.15);color:#C49066;}
+.ph4{background:rgba(122,92,142,0.15);color:#A87DC4;}
+.ph0{background:rgba(200,185,140,0.12);color:var(--gold);}
+.progress-bar{height:4px;background:rgba(200,185,140,0.1);border-radius:2px;overflow:hidden;margin-top:4px;}
+.progress-fill{height:100%;border-radius:2px;background:var(--gold);transition:width .6s ease;}
+.status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;}
+.s-done{background:#8DBE8D;} .s-progress{background:var(--gold);animation:pulse 1.8s infinite;} .s-planned{background:var(--border);}
+.totals-row td{font-weight:500;color:var(--text);border-top:0.5px solid var(--border);background:var(--bg-2);}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* METHODOLOGY */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.method-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:24px;transition:border-color .3s;}
+.method-card:hover{border-color:var(--gold-dim);}
+.method-icon{width:32px;height:32px;border:0.5px solid var(--gold-dim);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:14px;}
+.method-title{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--text);margin-bottom:8px;}
+.method-desc{font-size:12.5px;font-weight:300;color:var(--text-muted);line-height:1.7;}
+
+footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:var(--serif);font-size:14px;color:var(--gold);text-decoration:none;}
+.footer-links{display:flex;gap:28px;list-style:none;}
+.footer-links a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:.08s;} .rd2{transition-delay:.16s;} .rd3{transition-delay:.24s;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+
+@media(max-width:1100px){
+  nav{padding:18px 28px;}
+  .page-header,.pm-inner{padding-left:28px;padding-right:28px;}
+  .wbs-branches{grid-template-columns:repeat(2,1fr);}
+  .wbs-branches::before{display:none;}
+  .method-grid{grid-template-columns:1fr 1fr;}
+  .stakeholder-matrix{height:auto;}
+  .matrix-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  nav{padding:16px 20px;} .nav-links{display:none;}
+  .page-header{padding:110px 20px 48px;}
+  .pm-inner{padding:56px 20px;}
+  .wbs-branches{grid-template-columns:1fr;}
+  .method-grid{grid-template-columns:1fr;}
+  .matrix-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Abhinav Uppal</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="pm.html" class="active">PM Lab</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">MSc Management Consultancy · UCD Smurfit</div>
+  <h1 class="page-title">PM <em>Lab</em></h1>
+  <p class="page-desc">This page documents the project management methodology applied to building this personal brand website a live project in itself. Includes a full Work Breakdown Structure, 100-hour Gantt chart, stakeholder power-interest matrix, and time log.</p>
+  <div class="module-badge">
+    <span class="module-badge-label">Module</span>
+    <span class="module-badge-val">Project Management · UCD Michael Smurfit Graduate Business School · 2025–2026</span>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Approach</div>
+  <h2 class="sec-title reveal">Project Management Methodology</h2>
+  <p class="sec-desc reveal">This project applies structured PM principles drawn from PRINCE2 and agile hybrid methodology combining a defined WBS and Gantt for planning rigour with iterative delivery cycles for content and development work.</p>
+  <div class="method-grid">
+    <div class="method-card reveal">
+      <div class="method-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1" stroke="currentColor" stroke-width="1"/><path d="M5 8h6M5 5h6M5 11h4" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="method-title">Work Breakdown Structure</div>
+      <p class="method-desc">Four top-level deliverable branches Strategy & Market Entry, Digital Innovation & AI, Organisational Behaviour & Society, and Website & PM Documentation decomposed into 16 discrete work packages.</p>
+    </div>
+    <div class="method-card reveal rd1">
+      <div class="method-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1"/><rect x="8" y="3" width="6" height="2" rx="1" fill="currentColor" opacity=".3"/></svg></div>
+      <div class="method-title">100-Hour Gantt Chart</div>
+      <p class="method-desc">Timeline spanning Week 1 through Week 21 of the academic year. Tasks mapped across all four WBS branches with planned vs. actual tracking. Today's date marked as a live reference point.</p>
+    </div>
+    <div class="method-card reveal rd2">
+      <div class="method-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1"/><path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="method-title">Stakeholder Matrix</div>
+      <p class="method-desc">Power-interest grid mapping four stakeholder groups: Future Irish Employers & Mentors (Manage Closely), The Examiner (Keep Satisfied), Peer Network (Keep Informed), and General Public (Monitor).</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WBS -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Work Breakdown Structure</div>
+  <h2 class="sec-title reveal">Personal Brand Project — WBS</h2>
+  <p class="sec-desc reveal">Full decomposition into four deliverable branches and 16 work packages. Structured top-down matching the original Lucidspark diagram.</p>
+
+  <div class="reveal" style="overflow-x:auto;">
+  <div style="min-width:900px;">
+
+    <!-- ROOT -->
+    <div style="display:flex;justify-content:center;margin-bottom:0;">
+      <div style="background:var(--gold);color:var(--bg);font-family:var(--serif);font-size:14px;font-weight:500;padding:13px 36px;border-radius:3px;text-align:center;white-space:nowrap;">Personal Brand Project</div>
+    </div>
+
+    <!-- Root to branch connector -->
+    <div style="display:flex;justify-content:center;">
+      <div style="width:1px;height:28px;background:var(--gold-dim);"></div>
+    </div>
+
+    <!-- Horizontal crossbar -->
+    <div style="position:relative;height:1px;background:var(--gold-dim);margin:0 12.5%;"></div>
+
+    <!-- 4 branches -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;">
+
+      <!-- Branch 1 -->
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="width:1px;height:24px;background:var(--gold-dim);"></div>
+        <div style="background:rgba(74,124,142,0.15);border:1.5px solid rgba(74,124,142,0.5);border-radius:3px;padding:12px 14px;text-align:center;font-size:11.5px;font-weight:500;color:#7BB8CC;width:88%;line-height:1.35;">Strategy &amp;<br>Market Entry</div>
+        <!-- connector down -->
+        <div style="width:1px;height:20px;background:rgba(74,124,142,0.3);"></div>
+        <!-- children vertical line -->
+        <div style="width:60%;height:1px;background:rgba(74,124,142,0.25);"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;width:92%;margin-top:0;">
+          <div style="width:1px;height:12px;background:rgba(74,124,142,0.25);margin:0 auto;"></div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(74,124,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(74,124,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(74,124,142,0.25)';this.style.color='var(--text-muted)'">Kempower Case Study Analysis</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(74,124,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(74,124,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(74,124,142,0.25)';this.style.color='var(--text-muted)'">SEQ Ireland Growth Proposal Synthesis</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(74,124,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(74,124,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(74,124,142,0.25)';this.style.color='var(--text-muted)'">Future Economy Research (Space &amp; Green Hydrogen)</div>
+        </div>
+      </div>
+
+      <!-- Branch 2 -->
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="width:1px;height:24px;background:var(--gold-dim);"></div>
+        <div style="background:rgba(107,142,107,0.15);border:1.5px solid rgba(107,142,107,0.5);border-radius:3px;padding:12px 14px;text-align:center;font-size:11.5px;font-weight:500;color:#8DBE8D;width:88%;line-height:1.35;">Digital Innovation<br>&amp; AI</div>
+        <div style="width:1px;height:20px;background:rgba(107,142,107,0.3);"></div>
+        <div style="width:60%;height:1px;background:rgba(107,142,107,0.25);"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;width:92%;margin-top:0;">
+          <div style="width:1px;height:12px;background:rgba(107,142,107,0.25);margin:0 auto;"></div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(107,142,107,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(107,142,107,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(107,142,107,0.25)';this.style.color='var(--text-muted)'">Vertex AI Insurance Prototype Logic Design</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(107,142,107,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(107,142,107,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(107,142,107,0.25)';this.style.color='var(--text-muted)'">Google Cloud Skills Boost Certification Review</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(107,142,107,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(107,142,107,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(107,142,107,0.25)';this.style.color='var(--text-muted)'">AI Tool Testing &amp; Prompt Engineering</div>
+        </div>
+      </div>
+
+      <!-- Branch 3 -->
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="width:1px;height:24px;background:var(--gold-dim);"></div>
+        <div style="background:rgba(142,107,74,0.15);border:1.5px solid rgba(142,107,74,0.5);border-radius:3px;padding:12px 14px;text-align:center;font-size:11.5px;font-weight:500;color:#C49066;width:88%;line-height:1.35;">Organisational Behaviour<br>&amp; Society</div>
+        <div style="width:1px;height:20px;background:rgba(142,107,74,0.3);"></div>
+        <div style="width:60%;height:1px;background:rgba(142,107,74,0.25);"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;width:92%;margin-top:0;">
+          <div style="width:1px;height:12px;background:rgba(142,107,74,0.25);margin:0 auto;"></div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(142,107,74,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(142,107,74,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(142,107,74,0.25)';this.style.color='var(--text-muted)'">Ecomm Edge Diagnostic Report Summary</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(142,107,74,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(142,107,74,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(142,107,74,0.25)';this.style.color='var(--text-muted)'">180 Degrees Consulting Project Review</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(142,107,74,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(142,107,74,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(142,107,74,0.25)';this.style.color='var(--text-muted)'">Commerce Society (Combrosia) Leadership Audit</div>
+        </div>
+      </div>
+
+      <!-- Branch 4 -->
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <div style="width:1px;height:24px;background:var(--gold-dim);"></div>
+        <div style="background:rgba(122,92,142,0.15);border:1.5px solid rgba(122,92,142,0.5);border-radius:3px;padding:12px 14px;text-align:center;font-size:11.5px;font-weight:500;color:#A87DC4;width:88%;line-height:1.35;">Website Development<br>&amp; PM Documentation</div>
+        <div style="width:1px;height:20px;background:rgba(122,92,142,0.3);"></div>
+        <div style="width:60%;height:1px;background:rgba(122,92,142,0.25);"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;width:92%;margin-top:0;">
+          <div style="width:1px;height:12px;background:rgba(122,92,142,0.25);margin:0 auto;"></div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">Site Architecture &amp; Wireframing</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">Professional Copywriting (UK/Ireland Standards)</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">Asset Integration (CV, Portfolio, Uploads)</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">Stakeholder Matrix &amp; Rationale Development</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">100-Hour Gantt Chart Construction</div>
+          <div style="background:var(--bg-2);border:0.5px solid rgba(122,92,142,0.25);border-radius:2px;padding:9px 11px;font-size:10.5px;font-weight:300;color:var(--text-muted);text-align:center;line-height:1.45;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(122,92,142,0.6)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(122,92,142,0.25)';this.style.color='var(--text-muted)'">Final Process Report Writing &amp; Reflection</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<!-- GANTT -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Project Timeline</div>
+  <h2 class="sec-title reveal">Website Build — January to April 2026</h2>
+  <p class="sec-desc reveal">Task schedule across 14 weeks from January to April 2026. Shows planned allocation for building this portfolio site. Solid bars are complete, striped bars are in progress, dashed bars are planned.</p>
+
+  <div class="gantt-wrap reveal" style="position:relative;">
+    <!-- Month header -->
+    <div class="gantt-header" style="border-bottom:none;">
+      <div class="gantt-header-task" style="border-bottom:0.5px solid var(--border);">Task</div>
+      <div id="monthHeaders" style="display:grid;grid-template-columns:repeat(14,1fr);"></div>
+    </div>
+    <!-- Week sub-header -->
+    <div class="gantt-header">
+      <div class="gantt-header-task"></div>
+      <div class="gantt-weeks" id="weekHeaders" style="grid-template-columns:repeat(14,1fr);"></div>
+    </div>
+    <!-- Rows -->
+    <div id="ganttRows"></div>
+  </div>
+
+  <div class="gantt-legend" style="margin-top:20px;">
+    <div class="legend-item"><div class="legend-bar" style="background:rgba(74,124,142,0.7);"></div>Strategy &amp; Market Entry</div>
+    <div class="legend-item"><div class="legend-bar" style="background:rgba(107,142,107,0.7);"></div>Digital Innovation &amp; AI</div>
+    <div class="legend-item"><div class="legend-bar" style="background:rgba(142,107,74,0.7);"></div>OB &amp; Society</div>
+    <div class="legend-item"><div class="legend-bar" style="background:rgba(122,92,142,0.7);"></div>Website &amp; PM Docs</div>
+    <div class="legend-item"><div class="legend-bar" style="background:rgba(200,185,140,0.6);"></div>Cross-cutting</div>
+    <div class="legend-item"><div class="legend-bar planned"></div>Planned</div>
+  </div>
+</div>
+</div>
+
+<!-- STAKEHOLDER MATRIX -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Stakeholder Analysis</div>
+  <h2 class="sec-title reveal">Power–Interest Matrix</h2>
+  <p class="sec-desc reveal">Four stakeholder groups mapped by power (influence over project outcomes) and interest (degree of engagement with the project). Engagement strategy defined per quadrant.</p>
+
+  <div class="stakeholder-matrix reveal">
+    <div class="matrix-y-label">Power (High → Low)</div>
+    <div class="matrix-grid">
+      <!-- TL: High Power, Low Interest -->
+      <div class="matrix-cell cell-tl">
+        <div>
+          <div class="matrix-cell-label">High Power · Low Interest</div>
+          <div class="matrix-quadrant-title">Keep Satisfied</div>
+          <div class="stakeholder-tag">
+            <div class="sh-dot" style="background:#C49066;"></div>
+            <div><div>The Examiner</div><div class="sh-sub">UCD Smurfit · Module Assessor</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">High power to determine module grade. Engagement: rigorous documentation, clear methodology, academic referencing throughout.</div>
+      </div>
+      <!-- TR: High Power, High Interest -->
+      <div class="matrix-cell cell-tr">
+        <div>
+          <div class="matrix-cell-label">High Power · High Interest</div>
+          <div class="matrix-quadrant-title">Manage Closely</div>
+          <div class="stakeholder-tag">
+            <div class="sh-dot" style="background:#7BB8CC;"></div>
+            <div><div>Future Irish Employers &amp; Mentors</div><div class="sh-sub">Recruiters · Graduate Programme Managers</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Primary audience for the portfolio. High power to influence career outcomes. Engagement: professional design, verified facts only, strong case study evidence.</div>
+      </div>
+      <!-- BL: Low Power, Low Interest -->
+      <div class="matrix-cell cell-bl">
+        <div>
+          <div class="matrix-cell-label">Low Power · Low Interest</div>
+          <div class="matrix-quadrant-title">Monitor</div>
+          <div class="stakeholder-tag">
+            <div class="sh-dot" style="background:var(--text-faint);"></div>
+            <div><div>General Public</div><div class="sh-sub">Casual Visitors · Web Traffic</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Low direct influence. Monitor via analytics. Engagement: accessible copy, clean UX, no action required beyond awareness.</div>
+      </div>
+      <!-- BR: Low Power, High Interest -->
+      <div class="matrix-cell cell-br">
+        <div>
+          <div class="matrix-cell-label">Low Power · High Interest</div>
+          <div class="matrix-quadrant-title">Keep Informed</div>
+          <div class="stakeholder-tag">
+            <div class="sh-dot" style="background:#A87DC4;"></div>
+            <div><div>Peer Network</div><div class="sh-sub">UCD Classmates · 180DC Alumni</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">High interest, limited direct power. Engagement: share progress updates, LinkedIn posts, peer feedback loops during development.</div>
+      </div>
+    </div>
+    <div class="matrix-x-label">Interest (Low → High)</div>
+  </div>
+</div>
+</div>
+
+<!-- TIMESHEET -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Time Log</div>
+  <h2 class="sec-title reveal">Planned vs. Actual Hours</h2>
+  <p class="sec-desc reveal">Target: 100 hours total across all work packages. Actual hours will be updated as the project progresses. Incomplete entries marked as in progress.</p>
+
+  <div style="overflow-x:auto;" class="reveal">
+  <table class="timesheet-table">
+    <thead>
+      <tr>
+        <th>Work Package</th>
+        <th>Branch</th>
+        <th>Planned Hrs</th>
+        <th>Actual Hrs</th>
+        <th>Status</th>
+        <th style="min-width:120px;">Progress</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Kempower Case Study Analysis</td><td><span class="phase-label ph1">Strategy</span></td><td>8</td><td>8</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>SEQ Ireland Growth Proposal Synthesis</td><td><span class="phase-label ph1">Strategy</span></td><td>8</td><td>8</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Future Economy Research (Space &amp; Green Hydrogen)</td><td><span class="phase-label ph1">Strategy</span></td><td>6</td><td> </td><td><span class="status-dot s-planned"></span>Planned</td><td><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></td></tr>
+      <tr><td>Vertex AI Insurance Prototype Logic Design</td><td><span class="phase-label ph2">AI &amp; Digital</span></td><td>6</td><td> </td><td><span class="status-dot s-planned"></span>Planned</td><td><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></td></tr>
+      <tr><td>Google Cloud Skills Boost Certification Review</td><td><span class="phase-label ph2">AI &amp; Digital</span></td><td>5</td><td>5</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>AI Tool Testing &amp; Prompt Engineering</td><td><span class="phase-label ph2">AI &amp; Digital</span></td><td>6</td><td>4</td><td><span class="status-dot s-progress"></span>In Progress</td><td><div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div></td></tr>
+      <tr><td>Ecomm Edge Diagnostic Report Summary</td><td><span class="phase-label ph3">OB &amp; Society</span></td><td>6</td><td>6</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>180 Degrees Consulting Project Review</td><td><span class="phase-label ph3">OB &amp; Society</span></td><td>5</td><td>5</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Commerce Society Leadership Audit</td><td><span class="phase-label ph3">OB &amp; Society</span></td><td>4</td><td> </td><td><span class="status-dot s-planned"></span>Planned</td><td><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></td></tr>
+      <tr><td>Site Architecture &amp; Wireframing</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>6</td><td>6</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>Professional Copywriting</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>8</td><td>6</td><td><span class="status-dot s-progress"></span>In Progress</td><td><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></td></tr>
+      <tr><td>Asset Integration (CV, Portfolio, Uploads)</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>5</td><td>4</td><td><span class="status-dot s-progress"></span>In Progress</td><td><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div></td></tr>
+      <tr><td>Stakeholder Matrix &amp; Rationale</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>4</td><td>4</td><td><span class="status-dot s-done"></span>Complete</td><td><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></td></tr>
+      <tr><td>100-Hour Gantt Chart Construction</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>5</td><td>4</td><td><span class="status-dot s-progress"></span>In Progress</td><td><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div></td></tr>
+      <tr><td>Final Process Report Writing &amp; Reflection</td><td><span class="phase-label ph4">Website &amp; PM</span></td><td>8</td><td> </td><td><span class="status-dot s-planned"></span>Planned</td><td><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></td></tr>
+    </tbody>
+    <tfoot>
+      <tr class="totals-row"><td><strong>Total</strong></td><td></td><td><strong>100 hrs</strong></td><td><strong id="actualTotal">60 hrs logged</strong></td><td></td><td><div class="progress-bar" style="height:6px;"><div class="progress-fill" style="width:60%;background:var(--gold);"></div></div></td></tr>
+    </tfoot>
+  </table>
+  </div>
+  <p style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;font-family:var(--mono);letter-spacing:.08em;">* Actual hours will be updated on completion of each work package. Upload your CSV timesheet to replace these estimates.</p>
+</div>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">Abhinav Uppal</a>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Abhinav Uppal · PM Lab</span>
+</footer>
+
+<script>
+// cursor
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.07});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── GANTT BUILDER — Jan to Apr 2026 ──
+// 14 weeks: Jan 5 to Apr 12 2026
+const COLS = 14;
+const monthLabels = [
+  {label:'January 2026', span:4},
+  {label:'February 2026', span:4},
+  {label:'March 2026', span:4},
+  {label:'April 2026', span:2}
+];
+const weekStarts = [
+  'Jan 5','Jan 12','Jan 19','Jan 26',
+  'Feb 2','Feb 9','Feb 16','Feb 23',
+  'Mar 2','Mar 9','Mar 16','Mar 23',
+  'Mar 30','Apr 6'
+];
+
+// Tasks: start and end are 1-based week numbers (1=Jan5, 14=Apr6)
+const tasks = [
+  {label:'PLANNING & DISCOVERY', phase:true, color:'bc0'},
+  {label:'Requirements gathering', start:1, end:2, color:'bc0', status:'complete'},
+  {label:'Site architecture & wireframing', start:2, end:3, color:'bc0', status:'complete'},
+  {label:'Tool selection & setup', start:1, end:2, color:'bc0', status:'complete'},
+
+  {label:'DESIGN', phase:true, color:'bc1'},
+  {label:'Colour system & typography', start:3, end:4, color:'bc1', status:'complete'},
+  {label:'Mockups & design direction', start:3, end:5, color:'bc1', status:'complete'},
+  {label:'Feedback & iteration', start:5, end:6, color:'bc1', status:'complete'},
+
+  {label:'DEVELOPMENT', phase:true, color:'bc4'},
+  {label:'Home page build', start:5, end:7, color:'bc4', status:'complete'},
+  {label:'Work page build', start:7, end:8, color:'bc4', status:'complete'},
+  {label:'PM Lab page build', start:8, end:9, color:'bc4', status:'complete'},
+  {label:'About page build', start:9, end:10, color:'bc4', status:'complete'},
+  {label:'Insights page build', start:10, end:11, color:'bc4', status:'complete'},
+  {label:'Contact page build', start:11, end:12, color:'bc4', status:'complete'},
+
+  {label:'CONTENT', phase:true, color:'bc2'},
+  {label:'Project copywriting', start:6, end:12, color:'bc2', status:'inprogress'},
+  {label:'Insights article writing', start:9, end:12, color:'bc2', status:'inprogress'},
+  {label:'Asset integration (CV, PDFs)', start:8, end:13, color:'bc2', status:'inprogress'},
+
+  {label:'PM DOCUMENTATION', phase:true, color:'bc3'},
+  {label:'Stakeholder matrix', start:5, end:7, color:'bc3', status:'complete'},
+  {label:'WBS construction', start:6, end:8, color:'bc3', status:'complete'},
+  {label:'Gantt chart construction', start:8, end:13, color:'bc3', status:'inprogress'},
+  {label:'Final report & reflection', start:13, end:14, color:'bc3', status:'planned'},
+
+  {label:'TESTING & LAUNCH', phase:true, color:'bc0'},
+  {label:'Cross-browser & mobile testing', start:12, end:13, color:'bc0', status:'inprogress'},
+  {label:'GitHub Pages deployment', start:13, end:13, color:'bc0', status:'inprogress'},
+  {label:'Examiner submission', start:14, end:14, color:'bc0', status:'planned'},
+];
+
+// Today marker = week 14 (Apr 6-12)
+const todayWeek = 14;
+
+// Build month header row
+const mhContainer = document.getElementById('monthHeaders');
+monthLabels.forEach(m => {
+  const cell = document.createElement('div');
+  cell.style.cssText = `grid-column:span ${m.span};padding:10px 12px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border);background:rgba(200,185,140,0.04);`;
+  cell.textContent = m.label;
+  mhContainer.appendChild(cell);
+});
+
+// Build week sub-header
+const wh = document.getElementById('weekHeaders');
+weekStarts.forEach((w,i) => {
+  const d = document.createElement('div');
+  d.className = 'gantt-week-label';
+  d.textContent = w;
+  wh.appendChild(d);
+});
+
+// Build rows
+const gr = document.getElementById('ganttRows');
+tasks.forEach(t => {
+  const row = document.createElement('div');
+  row.className = 'gantt-row' + (t.phase ? ' phase-row' : '');
+
+  const labelDiv = document.createElement('div');
+  labelDiv.className = 'gantt-task-label';
+  if (!t.phase) {
+    const dot = document.createElement('div');
+    dot.className = 'phase-dot';
+    const colors = {bc0:'rgba(200,185,140,0.7)',bc1:'rgba(74,124,142,0.7)',bc2:'rgba(107,142,107,0.7)',bc3:'rgba(142,107,74,0.7)',bc4:'rgba(122,92,142,0.7)'};
+    dot.style.background = colors[t.color] || colors.bc0;
+    labelDiv.appendChild(dot);
+  }
+  labelDiv.appendChild(document.createTextNode(t.label));
+
+  const barRow = document.createElement('div');
+  barRow.className = 'gantt-bar-row';
+  barRow.style.position = 'relative';
+
+  for (let w = 1; w <= COLS; w++) {
+    const cell = document.createElement('div');
+    cell.className = 'gantt-cell';
+    barRow.appendChild(cell);
+  }
+
+  // today line
+  if (!t.phase) {
+    const tl = document.createElement('div');
+    tl.className = 'today-line';
+    tl.style.left = ((todayWeek - 0.5) / COLS * 100) + '%';
+    const tlabel = document.createElement('div');
+    tlabel.className = 'today-label';
+    tlabel.style.left = ((todayWeek - 0.5) / COLS * 100) + '%';
+    tlabel.textContent = 'Today';
+    barRow.appendChild(tl);
+    barRow.appendChild(tlabel);
+  }
+
+  // bar
+  if (!t.phase && t.start && t.end) {
+    const bar = document.createElement('div');
+    const leftPct = ((t.start - 1) / COLS * 100);
+    const widthPct = ((t.end - t.start + 1) / COLS * 100);
+    const bgColors = {bc0:'rgba(200,185,140,0.65)',bc1:'rgba(74,124,142,0.7)',bc2:'rgba(107,142,107,0.7)',bc3:'rgba(142,107,74,0.7)',bc4:'rgba(122,92,142,0.7)'};
+    bar.className = `gantt-bar ${t.status}`;
+    bar.style.left = leftPct + '%';
+    bar.style.width = widthPct + '%';
+    if (t.status !== 'planned') bar.style.background = bgColors[t.color];
+    barRow.appendChild(bar);
+  }
+
+  row.appendChild(labelDiv);
+  row.appendChild(barRow);
+  gr.appendChild(row);
+});
+</script>
+</body>
+</html>

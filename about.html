@@ -36,7 +36,7 @@ nav.scrolled{padding:13px 48px;}
 .about-hero{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:160px 48px 80px;display:grid;grid-template-columns:420px 1fr;gap:80px;align-items:start;}
 .photo-col{position:relative;}
 .photo-frame{position:relative;}
-.photo-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:2px;filter:grayscale(10%) contrast(1.05);display:block;}
+.photo-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;border-radius:2px;filter:grayscale(10%) contrast(1.05);display:block;}
 .photo-frame::after{content:'';position:absolute;inset:14px -14px -14px 14px;border:0.5px solid var(--gold-dim);border-radius:2px;z-index:-1;}
 .photo-tag{position:absolute;bottom:-20px;left:20px;background:var(--bg-2);border:0.5px solid var(--gold-dim);padding:12px 18px;border-radius:2px;}
 .photo-tag-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
@@ -113,7 +113,7 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
 @media(max-width:1100px){
   nav{padding:18px 28px;}
   .about-hero{grid-template-columns:1fr;padding:120px 28px 60px;gap:52px;}
-  .photo-frame img{aspect-ratio:4/3;}
+  .photo-frame img{aspect-ratio:3/2;object-position:center 20%;}
   .section-inner{padding:60px 28px;}
   .skills-grid{grid-template-columns:1fr 1fr;}
   .interests-grid{grid-template-columns:1fr 1fr;}
@@ -181,12 +181,11 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   </div>
 </div>
 
-<!-- EDUCATION AND EXPERIENCE -->
+<!-- EDUCATION -->
 <div class="section-wrap">
 <div class="section-inner">
-  <div class="sec-eyebrow reveal">Background</div>
-  <div class="sec-title reveal">Education and Experience</div>
-
+  <div class="sec-eyebrow reveal">Academic Background</div>
+  <div class="sec-title reveal">Education</div>
   <div class="timeline">
     <div class="timeline-item reveal">
       <div class="timeline-date">Sept 2025 — Present</div>
@@ -198,6 +197,25 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
       </div>
     </div>
     <div class="timeline-item reveal rd1">
+      <div class="timeline-date">Oct 2022 — Jun 2025</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Bachelor of Commerce — First Division</div>
+        <div class="timeline-org">Motilal Nehru College, University of Delhi · 7.955 / 10</div>
+        <div class="timeline-desc">Key modules: Financial Accounting, Financial Management, Business Analytics using R. Led Content and Research at Combrosia Commerce Society for 3 years, managing a 10-member team and a sponsorship budget of over €8,000. Organised flagship events with 800+ attendees.</div>
+        <div class="timeline-chips"><span class="chip">B.Com First Division</span><span class="chip">R (Statistical Modelling)</span><span class="chip">Society Leadership</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- INTERNSHIPS -->
+<div class="section-wrap">
+<div class="section-inner">
+  <div class="sec-eyebrow reveal">Professional Experience</div>
+  <div class="sec-title reveal">Internships</div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
       <div class="timeline-date">Jun to Aug 2025</div>
       <div class="timeline-content">
         <div class="timeline-title">Wealth Management Intern</div>
@@ -206,17 +224,45 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
         <div class="timeline-chips"><span class="chip">Portfolio Management</span><span class="chip">Client Acquisition</span><span class="chip">Financial Reporting</span></div>
       </div>
     </div>
-    <div class="timeline-item reveal rd2">
+    <div class="timeline-item reveal rd1">
       <div class="timeline-date">Jan to Apr 2025</div>
       <div class="timeline-content">
         <div class="timeline-title">Supply Chain Planner</div>
         <div class="timeline-org">Aramco Engineers, New Delhi</div>
-        <div class="timeline-desc">Reconciled €150,000 of stock. Audited inbound logistics workflows reducing weekly reporting time by 2 hours. Built a consolidated inventory tracker for ND/GD motors and AC drives.</div>
+        <div class="timeline-desc">Reconciled €150,000 of stock using Excel. Audited inbound logistics workflows reducing weekly reporting time by 2 hours. Built a consolidated inventory tracker for ND/GD motors and AC drives.</div>
         <div class="timeline-chips"><span class="chip">Supply Chain</span><span class="chip">Inventory Management</span><span class="chip">Excel</span></div>
       </div>
     </div>
-    <div class="timeline-item reveal rd3">
-      <div class="timeline-date">Aug 2023 to May 2024</div>
+    <div class="timeline-item reveal rd2">
+      <div class="timeline-date">Mar 2024 · 1 month</div>
+      <div class="timeline-content">
+        <div class="timeline-title">Digital Marketing Intern</div>
+        <div class="timeline-org">IIDE Global Virtual Internship Programme</div>
+        <div class="timeline-desc">Completed training and tasks across Social Media Marketing, SEO, Content Writing, and Google Workspace Management. Gained practical exposure to integrated digital marketing workflows.</div>
+        <div class="timeline-chips"><span class="chip">SEO</span><span class="chip">Social Media</span><span class="chip">Content Writing</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PART TIME AND LEADERSHIP -->
+<div class="section-wrap">
+<div class="section-inner">
+  <div class="sec-eyebrow reveal">Other Roles</div>
+  <div class="sec-title reveal">Part-time and Leadership</div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">Jan 2026 — Present</div>
+      <div class="timeline-content">
+        <div class="timeline-title">After-School Team Member</div>
+        <div class="timeline-org">Kids Inc, Dublin</div>
+        <div class="timeline-desc">Maintained daily operational checklists and safety logs. Managed communications with parents and staff in a fast-paced environment while studying full-time at UCD Smurfit.</div>
+        <div class="timeline-chips"><span class="chip">Operations</span><span class="chip">Communication</span><span class="chip">Dublin</span></div>
+      </div>
+    </div>
+    <div class="timeline-item reveal rd1">
+      <div class="timeline-date">Aug 2023 — May 2024</div>
       <div class="timeline-content">
         <div class="timeline-title">Senior Associate</div>
         <div class="timeline-org">180 Degrees Consulting, Motilal Nehru College Chapter</div>
@@ -224,13 +270,13 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
         <div class="timeline-chips"><span class="chip">CSR Strategy</span><span class="chip">Fundraising</span><span class="chip">Market Analysis</span></div>
       </div>
     </div>
-    <div class="timeline-item reveal rd4">
-      <div class="timeline-date">Oct 2022 to Jun 2025</div>
+    <div class="timeline-item reveal rd2">
+      <div class="timeline-date">Oct 2022 — Jun 2025</div>
       <div class="timeline-content">
-        <div class="timeline-title">Bachelor of Commerce — First Division</div>
-        <div class="timeline-org">Motilal Nehru College, University of Delhi · 7.955 / 10</div>
-        <div class="timeline-desc">Key modules: Financial Accounting, Financial Management, Business Analytics using R. Led Content and Research at Combrosia Commerce Society for 3 years, managing a 10-member team and a sponsorship budget of over €8,000. Organised flagship events with 800+ attendees.</div>
-        <div class="timeline-chips"><span class="chip">B.Com First Division</span><span class="chip">R (Statistical Modelling)</span><span class="chip">Society Leadership</span></div>
+        <div class="timeline-title">Head, Content and Research Department</div>
+        <div class="timeline-org">Combrosia Commerce Society, Motilal Nehru College</div>
+        <div class="timeline-desc">Led research and production across 4+ society publications. Managed a 10-member team and oversaw a sponsorship budget of €8,000+. Organised flagship events Inspiron and Combuzz with 800+ attendees. Delivered financial literacy sessions for underprivileged staff. Led CSR initiatives across all 3 years including plantation drives and book donation camps.</div>
+        <div class="timeline-chips"><span class="chip">Team Leadership</span><span class="chip">Event Management</span><span class="chip">CSR</span><span class="chip">Public Speaking</span></div>
       </div>
     </div>
   </div>
