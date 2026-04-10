@@ -487,7 +487,7 @@
   <span class="footer-copy">© 2026 Abhinav Uppal · Delhi / Dublin</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
@@ -500,4 +500,10 @@
     btn.classList.add('active');
     const f=btn.dataset.filter;
     document.querySelectorAll('.project-card[data-category]').forEach(c=>{
-      const show=f==='all'||c.
+      const show = f === 'all' || c.dataset.category === f;
+      c.style.display = show ? 'flex' : 'none';
+    });
+  }));
+</script>
+</body>
+</html>
