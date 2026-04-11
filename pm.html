@@ -373,69 +373,7 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
 </div>
 </div>
 
-<!-- STAKEHOLDER MATRIX -->
-<div class="pm-section">
-<div class="pm-inner">
-  <div class="sec-eyebrow reveal">Stakeholder Analysis</div>
-  <h2 class="sec-title reveal">Power–Interest Matrix</h2>
-  <p class="sec-desc reveal">Four stakeholder groups mapped by power (influence over project outcomes) and interest (degree of engagement with the project). Engagement strategy defined per quadrant.</p>
 
-  <div class="stakeholder-matrix reveal">
-    <div class="matrix-y-label">Power (High → Low)</div>
-    <div class="matrix-grid">
-      <!-- TL: High Power, Low Interest -->
-      <div class="matrix-cell cell-tl">
-        <div>
-          <div class="matrix-cell-label">High Power · Low Interest</div>
-          <div class="matrix-quadrant-title">Keep Satisfied</div>
-          <div class="stakeholder-tag">
-            <div class="sh-dot" style="background:#C49066;"></div>
-            <div><div>The Examiner</div><div class="sh-sub">UCD Smurfit · Module Assessor</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">High power to determine module grade. Engagement: rigorous documentation, clear methodology, academic referencing throughout.</div>
-      </div>
-      <!-- TR: High Power, High Interest -->
-      <div class="matrix-cell cell-tr">
-        <div>
-          <div class="matrix-cell-label">High Power · High Interest</div>
-          <div class="matrix-quadrant-title">Manage Closely</div>
-          <div class="stakeholder-tag">
-            <div class="sh-dot" style="background:#7BB8CC;"></div>
-            <div><div>Future Irish Employers &amp; Mentors</div><div class="sh-sub">Recruiters · Graduate Programme Managers</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Primary audience for the portfolio. High power to influence career outcomes. Engagement: professional design, verified facts only, strong case study evidence.</div>
-      </div>
-      <!-- BL: Low Power, Low Interest -->
-      <div class="matrix-cell cell-bl">
-        <div>
-          <div class="matrix-cell-label">Low Power · Low Interest</div>
-          <div class="matrix-quadrant-title">Monitor</div>
-          <div class="stakeholder-tag">
-            <div class="sh-dot" style="background:var(--text-faint);"></div>
-            <div><div>General Public</div><div class="sh-sub">Casual Visitors · Web Traffic</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Low direct influence. Monitor via analytics. Engagement: accessible copy, clean UX, no action required beyond awareness.</div>
-      </div>
-      <!-- BR: Low Power, High Interest -->
-      <div class="matrix-cell cell-br">
-        <div>
-          <div class="matrix-cell-label">Low Power · High Interest</div>
-          <div class="matrix-quadrant-title">Keep Informed</div>
-          <div class="stakeholder-tag">
-            <div class="sh-dot" style="background:#A87DC4;"></div>
-            <div><div>Peer Network</div><div class="sh-sub">UCD Classmates · 180DC Alumni</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">High interest, limited direct power. Engagement: share progress updates, LinkedIn posts, peer feedback loops during development.</div>
-      </div>
-    </div>
-    <div class="matrix-x-label">Interest (Low → High)</div>
-  </div>
-</div>
-</div>
 
 <!-- TIMESHEET -->
 <div class="pm-section">
@@ -531,7 +469,69 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
           </div>
         </div>
       </div>
+      
+<!-- STAKEHOLDER MATRIX -->
+<div class="pm-section">
+<div class="pm-inner">
+  <div class="sec-eyebrow reveal">Stakeholder Analysis</div>
+  <h2 class="sec-title reveal">Power–Interest Matrix</h2>
+  <p class="sec-desc reveal">Four stakeholder groups mapped by power (influence over project outcomes) and interest (degree of engagement with the project). Engagement strategy defined per quadrant.</p>
 
+  <div class="stakeholder-matrix reveal">
+    <div class="matrix-y-label">Power (High → Low)</div>
+    <div class="matrix-grid">
+            <div class="matrix-cell cell-tl">
+              <div class="matrix-cell-label">High Power · Low Interest</div>
+              <div class="matrix-quadrant-title">Keep Satisfied</div>
+              <div class="stakeholder-tag">
+                <div class="sh-dot" style="background:#C49066;"></div>
+                <div>Platform Providers<div class="sh-sub">GitHub Pages &amp; Cloudflare</div></div>
+              </div>
+              <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">High power over site uptime and security constraints, minimal interest in the actual portfolio content.</div>
+            </div>
+
+            <div class="matrix-cell cell-tr">
+              <div class="matrix-cell-label">High Power · High Interest</div>
+              <div class="matrix-quadrant-title">Manage Closely</div>
+              <div class="stakeholder-tag">
+                <div class="sh-dot" style="background:#4ade80;"></div>
+                <div>Target Employers<div class="sh-sub">Recruiters &amp; Hiring Managers</div></div>
+              </div>
+              <div class="stakeholder-tag" style="margin-top:8px;">
+                <div class="sh-dot" style="background:#4ade80;"></div>
+                <div>Module Assessor<div class="sh-sub">UCD Smurfit PM Faculty</div></div>
+              </div>
+              <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Primary audience determining career success and academic grading. Requires seamless UX and strict adherence to PM principles.</div>
+            </div>
+
+            <div class="matrix-cell cell-bl">
+              <div class="matrix-cell-label">Low Power · Low Interest</div>
+              <div class="matrix-quadrant-title">Monitor</div>
+              <div class="stakeholder-tag">
+                <div class="sh-dot" style="background:#64748b;"></div>
+                <div>General Public<div class="sh-sub">Passive Web Traffic</div></div>
+              </div>
+              <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Occasional visitors navigating from LinkedIn or organic search. Monitored via basic analytics for bounce rates.</div>
+            </div>
+
+            <div class="matrix-cell cell-br">
+              <div class="matrix-cell-label">Low Power · High Interest</div>
+              <div class="matrix-quadrant-title">Keep Informed</div>
+              <div class="stakeholder-tag">
+                <div class="sh-dot" style="background:#3b82f6;"></div>
+                <div>Professional Mentors<div class="sh-sub">e.g., Fionn Lawlor</div></div>
+              </div>
+              <div class="stakeholder-tag" style="margin-top:8px;">
+                <div class="sh-dot" style="background:#3b82f6;"></div>
+                <div>Peer Network<div class="sh-sub">e.g., Yash, Academic Cohort</div></div>
+              </div>
+              <div style="font-size:11px;font-weight:300;color:var(--text-faint);margin-top:12px;line-height:1.6;">Highly invested in the project's success for guidance and feedback, but hold no formal authority over the final execution.</div>
+            </div>
+            
+            <div class="matrix-x-label">Interest (Low &rarr; High)</div>
+          </div>
+</div>
+</div>
       <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
         <div style="display:grid;grid-template-columns:auto 1fr auto;align-items:stretch;gap:0;">
           <div style="width:4px;background:#c0392b;"></div>
@@ -788,40 +788,26 @@ const weekStarts = [
 
 // Tasks: start and end are 1-based week numbers (1=Jan5, 14=Apr6)
 const tasks = [
-  {label:'PLANNING & DISCOVERY', phase:true, color:'bc0'},
-  {label:'Requirements gathering', start:1, end:2, color:'bc0', status:'complete'},
-  {label:'Site architecture & wireframing', start:2, end:3, color:'bc0', status:'complete'},
-  {label:'Tool selection & setup', start:1, end:2, color:'bc0', status:'complete'},
+    {label:'PLANNING & DISCOVERY', phase:true, color:'bc0'},
+    {label:'Scope & Stakeholder Mapping', start:1, end:2, color:'bc0', status:'complete'},
+    {label:'Platform Architecture & WBS', start:2, end:4, color:'bc0', status:'complete'},
 
-  {label:'DESIGN', phase:true, color:'bc1'},
-  {label:'Colour system & typography', start:3, end:4, color:'bc1', status:'complete'},
-  {label:'Mockups & design direction', start:3, end:5, color:'bc1', status:'complete'},
-  {label:'Feedback & iteration', start:5, end:6, color:'bc1', status:'complete'},
+    {label:'DESIGN', phase:true, color:'bc1'},
+    {label:'UI Prototyping & Wix Evaluation', start:3, end:6, color:'bc1', status:'complete'},
 
-  {label:'DEVELOPMENT', phase:true, color:'bc4'},
-  {label:'Home page build', start:5, end:7, color:'bc4', status:'complete'},
-  {label:'Work page build', start:7, end:8, color:'bc4', status:'complete'},
-  {label:'PM Lab page build', start:8, end:9, color:'bc4', status:'complete'},
-  {label:'About page build', start:9, end:10, color:'bc4', status:'complete'},
-  {label:'Insights page build', start:10, end:11, color:'bc4', status:'complete'},
-  {label:'Contact page build', start:11, end:12, color:'bc4', status:'complete'},
+    {label:'DEVELOPMENT', phase:true, color:'bc4'},
+    {label:'Strategic Pivot & GitHub Setup', start:5, end:7, color:'bc4', status:'complete'},
+    {label:'AI-Assisted Page Build (Claude/Gemini)', start:7, end:12, color:'bc4', status:'complete'},
+    {label:'CSS Styling & Animations', start:10, end:13, color:'bc4', status:'complete'},
+    {label:'QA Testing, Debugging & Go-Live', start:13, end:14, color:'bc4', status:'complete'},
 
-  {label:'CONTENT', phase:true, color:'bc2'},
-  {label:'Project copywriting', start:6, end:12, color:'bc2', status:'inprogress'},
-  {label:'Insights article writing', start:9, end:12, color:'bc2', status:'inprogress'},
-  {label:'Asset integration (CV, PDFs)', start:8, end:13, color:'bc2', status:'inprogress'},
+    {label:'CONTENT', phase:true, color:'bc2'},
+    {label:'Case Studies & Content Generation', start:6, end:9, color:'bc2', status:'complete'},
+    {label:'Asset Formatting & Integration', start:8, end:11, color:'bc2', status:'complete'},
 
-  {label:'PM DOCUMENTATION', phase:true, color:'bc3'},
-  {label:'Stakeholder matrix', start:5, end:7, color:'bc3', status:'complete'},
-  {label:'WBS construction', start:6, end:8, color:'bc3', status:'complete'},
-  {label:'Gantt chart construction', start:8, end:13, color:'bc3', status:'inprogress'},
-  {label:'Final report & reflection', start:13, end:14, color:'bc3', status:'planned'},
-
-  {label:'TESTING & LAUNCH', phase:true, color:'bc0'},
-  {label:'Cross-browser & mobile testing', start:12, end:13, color:'bc0', status:'inprogress'},
-  {label:'GitHub Pages deployment', start:13, end:13, color:'bc0', status:'inprogress'},
-  {label:'Examiner submission', start:14, end:14, color:'bc0', status:'planned'},
-];
+    {label:'PROJECT MANAGEMENT', phase:true, color:'bc3'},
+    {label:'Chronological Time Log Updates', start:1, end:14, color:'bc3', status:'complete'}
+  ];
 
 // Today marker = week 14 (Apr 6-12)
 const todayWeek = 14;
