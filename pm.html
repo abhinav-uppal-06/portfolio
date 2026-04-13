@@ -175,13 +175,53 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   .matrix-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:600px){
-  nav{padding:16px 20px;} .nav-links{display:none;}
-  .page-header{padding:110px 20px 48px;}
-  .pm-inner{padding:56px 20px;}
-  .wbs-branches{grid-template-columns:1fr;}
-  .method-grid{grid-template-columns:1fr;}
-  .matrix-grid{grid-template-columns:1fr;}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px;}
+  /* Universal Settings */
+  nav { padding: 16px 20px !important; } 
+  .nav-links { display: none !important; }
+  .page-header { padding: 110px 20px 48px !important; }
+  .pm-inner { padding: 48px 20px !important; }
+  .wbs-branches, .method-grid { grid-template-columns: 1fr !important; }
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+
+  /* 1. Fix the Gantt Chart Overlap (Forces Horizontal Scroll) */
+  .gantt-header, .gantt-row { 
+    min-width: 800px !important; 
+    grid-template-columns: 140px 1fr !important; 
+  }
+  .gantt-header-task, .gantt-task-label { padding: 10px 12px !important; }
+
+  /* 2. Fix the Stakeholder Matrix (Converts to Stacked Cards) */
+  .stakeholder-matrix { display: block !important; height: auto !important; }
+  .matrix-y-label, .matrix-x-label { display: none !important; } 
+  .matrix-grid { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    gap: 1rem !important; 
+    border: none !important; 
+  }
+  .matrix-cell { 
+    border: 0.5px solid var(--border) !important; 
+    border-radius: 8px !important; 
+    padding: 24px !important; 
+  }
+
+  /* 3. Fix the Risk Register (Stacks text and numbers) */
+  #risk-register div[style*="grid-template-columns:1fr auto"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* 4. Fix Financial Statement & Timesheet */
+  div[style*="grid-template-columns:1fr 1.6fr auto"] { 
+    grid-template-columns: 1fr auto !important; 
+    padding: 1rem !important; 
+  }
+  div[style*="grid-template-columns:1fr 1.6fr auto"] > *:nth-child(2) { 
+    display: none !important; 
+  }
+  div[style*="grid-template-columns:repeat(3,1fr)"] { 
+    grid-template-columns: 1fr !important; 
+  }
 }
 </style>
 </head>
