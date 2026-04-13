@@ -533,28 +533,32 @@
 </footer>
 
 <script>
- <script>
-  const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
-  if (window.innerWidth > 800) {
-    let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-    (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
-  } else {
-    if(cursor) cursor.style.display = 'none';
-    if(ring) ring.style.display = 'none';
-  }
-  window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
-  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-  document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const f=btn.dataset.filter;
-    document.querySelectorAll('.project-card[data-category]').forEach(c=>{
-      const show = f === 'all' || c.dataset.category === f;
-      c.style.display = show ? 'flex' : 'none';
-    });
-  }));
+// ── CURSOR LOGIC (DESKTOP ONLY) ──
+const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+if (window.innerWidth > 800 && window.matchMedia("(pointer: fine)").matches) {
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+} else {
+  if(cursor) cursor.style.display = 'none';
+  if(ring) ring.style.display = 'none';
+}
+
+// ── SCROLL & REVEAL ANIMATIONS ──
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── PROJECT FILTER LOGIC ──
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const f=btn.dataset.filter;
+  document.querySelectorAll('.project-card[data-category]').forEach(c=>{
+    const show = f === 'all' || c.dataset.category === f;
+    c.style.display = show ? 'flex' : 'none';
+  });
+}));
 </script>
 </body>
 </html>
