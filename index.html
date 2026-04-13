@@ -190,8 +190,8 @@
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
 
   /* 2. Fix Hero Overlap & Typography */
-  .hero-wrap { padding: 170px 20px 60px !important; gap: 40px !important; } /* Pushes text safely below the new navbar */
-  .hero-right { grid-template-columns: 1fr !important; } /* Stacks the stat cards neatly */
+  .hero-wrap { padding: 170px 20px 60px !important; gap: 40px !important; }
+  .hero-right { grid-template-columns: 1fr !important; }
   h1 { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
   .section-inner { padding: 60px 20px !important; }
 
@@ -201,18 +201,13 @@
     gap: 2rem !important;
   }
 
-  /* 4. Fix About Section Headshot */
-  .about-grid { display: flex !important; flex-direction: column-reverse !important; gap: 40px !important; }
-  .about-photo-frame { max-width: 280px !important; margin: 0 auto !important; }
-  .about-photo-frame img { object-position: center bottom !important; } /* Forces the camera to keep your face in frame! */
+  /* 4. Headshot Fix (Back on top, Face perfectly visible!) */
+  .about-grid { grid-template-columns: 1fr !important; display: grid !important; gap: 40px !important; }
+  .about-photo-frame { max-width: 320px !important; margin: 0 auto !important; }
+  .about-photo-frame img { object-position: top center !important; } 
 
   /* 5. Ensure images don't break out */
   img, .project-card-image { max-width: 100% !important; height: auto !important; }
-}
-
-/* ── DISABLE CUSTOM CURSOR ON MOBILE & TOUCH DEVICES ── */
-@media (hover: none) and (pointer: coarse), (max-width: 800px) {
-  .cursor, .cursor-ring { display: none !important; }
 }
 </style>
 </head>
