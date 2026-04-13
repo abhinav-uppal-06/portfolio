@@ -120,13 +120,32 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   .timeline-item{grid-template-columns:140px 1fr;gap:20px;}
 }
 @media(max-width:600px){
-  nav{padding:16px 20px;}.nav-links{display:none;}
-  .about-hero{padding:100px 20px 48px;}
-  .section-inner{padding:48px 20px;}
-  .skills-grid,.interests-grid{grid-template-columns:1fr;}
-  .timeline-item{grid-template-columns:1fr;gap:8px;}
-  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px;}
-}
+  /* Universal Nav & Footer */
+  nav { padding: 16px 20px !important; } 
+  .nav-links { display: none !important; } 
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+
+  /* About Page Typography & Padding */
+  .about-hero { padding: 110px 20px 48px !important; }
+  .about-h1 { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; line-height: 1.1; }
+  .section-inner { padding: 48px 20px !important; }
+
+  /* Force Grids and Timelines to Stack */
+  .skills-grid, .interests-grid { 
+    grid-template-columns: 1fr !important; 
+    gap: 1.5rem !important; 
+  }
+  .timeline-item { 
+    grid-template-columns: 1fr !important; 
+    gap: 12px !important; 
+  }
+  
+  /* Ensure Photo Never Breaks the Screen */
+  img { 
+    max-width: 100% !important; 
+    height: auto !important; 
+  }
+
 </style>
 </head>
 <body>
