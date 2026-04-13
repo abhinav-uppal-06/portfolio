@@ -179,15 +179,31 @@
     footer{flex-direction:column;gap:20px;text-align:center;}
   }
   @media(max-width:600px){
-    nav{padding:16px 20px;} .nav-links{display:none;}
-    .hero-wrap{padding:100px 20px 60px;}
-    section{padding:60px 20px;}
-    .hero-right{grid-template-columns:1fr;}
-    .expertise-inner{grid-template-columns:1fr;}
-    .expertise-strip,.cta-band{padding:48px 20px;}
-    footer{padding:32px 20px;}
-    .contact-row{flex-direction:column;gap:16px;}
+  /* 1. Universal Nav & Footer */
+  nav { padding: 16px 20px !important; } 
+  .nav-links { display: none !important; } 
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+
+  /* 2. Scale Down Hero Typography & Adjust Padding */
+  .hero-section { padding: 120px 20px 60px !important; }
+  .hero-title { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
+  .section-inner { padding: 60px 20px !important; }
+
+  /* 3. FORCE FEATURED PROJECTS TO STACK VERTICALLY */
+  .projects-grid, 
+  .featured-grid, 
+  .services-grid,
+  div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
+
+  /* 4. Ensure images don't break out of their containers */
+  img, .project-card-image { 
+    max-width: 100% !important; 
+    height: auto !important; 
+  }
+}
 </style>
 </head>
 <body>
