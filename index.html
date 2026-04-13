@@ -179,7 +179,7 @@
     footer{flex-direction:column;gap:20px;text-align:center;}
   }
 @media(max-width:600px){
-  /* 1. Mobile Navigation Bar (Stacked & Swipeable) */
+  /* 1. Mobile Navigation Bar */
   nav { padding: 12px 20px !important; flex-wrap: wrap !important; }
   .nav-links { display: flex !important; width: 100%; justify-content: space-between; gap: 16px; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .nav-links::-webkit-scrollbar { display: none; }
@@ -189,25 +189,23 @@
   /* Footer */
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
 
-  /* 2. Scale Down Hero Typography & Adjust Padding */
-  .hero-section { padding: 120px 20px 60px !important; }
-  .hero-title { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
+  /* 2. Scale Down Hero Typography */
+  .hero-wrap { padding: 120px 20px 60px !important; }
+  h1 { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
   .section-inner { padding: 60px 20px !important; }
 
-  /* 3. FORCE FEATURED PROJECTS TO STACK VERTICALLY */
-  .projects-grid, 
-  .featured-grid, 
-  .services-grid,
-  div[style*="grid-template-columns"] {
+  /* 3. FORCE FEATURED PROJECTS TO STACK */
+  .projects-grid, .featured-grid, .services-grid, .home-projects-grid, div[style*="grid-template-columns:repeat(3, 1fr)"] {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }
 
-  /* 4. Ensure images don't break out of their containers */
-  img, .project-card-image { 
-    max-width: 100% !important; 
-    height: auto !important; 
-  }
+  /* 4. Fix About Section Headshot (Text First, Photo Centered Below) */
+  .about-grid { display: flex !important; flex-direction: column-reverse !important; gap: 40px !important; }
+  .about-photo-frame { max-width: 280px !important; margin: 0 auto !important; }
+
+  /* 5. Ensure images don't break out */
+  img, .project-card-image { max-width: 100% !important; height: auto !important; }
 }
 
 /* ── DISABLE CUSTOM CURSOR ON MOBILE & TOUCH DEVICES ── */
