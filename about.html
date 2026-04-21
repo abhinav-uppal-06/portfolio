@@ -3,139 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Abhinav Uppal</title>
+<title>About Abhinav Uppal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#09090E;--bg-2:#0F0F16;
-  --gold:#C8B98C;--gold-dim:rgba(200,185,140,0.18);--gold-faint:rgba(200,185,140,0.06);
-  --text:#E8E6E0;--text-muted:rgba(232,230,224,0.55);--text-faint:rgba(232,230,224,0.32);
-  --border:rgba(200,185,140,0.12);--border-hover:rgba(200,185,140,0.3);
-  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:auto;}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
+  :root {
+    --bg:#09090E; --bg-2:#0F0F16; --gold:#C8B98C;
+    --gold-dim:rgba(200,185,140,0.18); --gold-faint:rgba(200,185,140,0.06);
+    --text:#E8E6E0; --text-muted:rgba(232,230,224,0.55); --text-faint:rgba(232,230,224,0.32);
+    --border:rgba(200,185,140,0.12); --border-hover:rgba(200,185,140,0.3);
+    --serif:'Playfair Display',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;cursor:auto;}
+  .cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+  .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(200,185,140,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .2s;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(9,9,14,0.82);border-bottom:0.5px solid var(--border);transition:padding .3s;}
-nav.scrolled{padding:13px 48px;}
-.nav-logo{font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--gold);text-decoration:none;}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links li{position:relative;}
-.nav-links a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--gold);}
-.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
-.nav-cta{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:10px 22px;border:none;cursor:pointer;border-radius:2px;text-decoration:none;transition:opacity .2s;}
-.nav-cta:hover{opacity:.88;}
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(9,9,14,0.82);border-bottom:0.5px solid var(--border);transition:padding .3s;}
+  nav.scrolled{padding:13px 48px;}
+  .nav-logo{font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:.06em;color:var(--gold);text-decoration:none;}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links li{position:relative;}
+  .nav-links a{font-size:10.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;position:relative;}
+  .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--gold);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-popup{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--bg-2);border:0.5px solid var(--gold-dim);border-radius:4px;padding:14px 18px;width:210px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200;}
+  .nav-links li:hover .nav-popup{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+  .nav-popup::before{content:'';position:absolute;top:-5px;left:50%;width:8px;height:8px;background:var(--bg-2);border-left:0.5px solid var(--gold-dim);border-top:0.5px solid var(--gold-dim);transform:translateX(-50%) rotate(45deg);}
+  .nav-popup-title{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .nav-popup-desc{font-size:11px;font-weight:300;color:var(--text-muted);line-height:1.6;}
+  .nav-cta{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:10px 22px;border:none;cursor:none;border-radius:2px;text-decoration:none;transition:opacity .2s,transform .2s;}
+  .nav-cta:hover{opacity:.88;transform:translateY(-1px);}
 
-/* HERO */
-.about-hero{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:160px 48px 80px;display:grid;grid-template-columns:420px 1fr;gap:80px;align-items:start;}
-.photo-col{position:relative;}
-.photo-frame{position:relative;}
-.photo-frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;border-radius:2px;filter:grayscale(10%) contrast(1.05);display:block;}
-.photo-frame::after{content:'';position:absolute;inset:14px -14px -14px 14px;border:0.5px solid var(--gold-dim);border-radius:2px;z-index:-1;}
-.photo-tag{position:absolute;bottom:-20px;left:20px;background:var(--bg-2);border:0.5px solid var(--gold-dim);padding:12px 18px;border-radius:2px;}
-.photo-tag-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
-.photo-tag-val{font-size:12px;font-weight:300;color:var(--text-muted);}
+  /* HEADER & GRIDS */
+  .about-hero{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:160px 48px 80px;display:grid;grid-template-columns:380px 1fr;gap:80px;align-items:start;}
+  .photo-frame{position:relative;}
+  .photo-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;display:block;}
+  .photo-frame::after{content:'';position:absolute;inset:12px -12px -12px 12px;border:0.5px solid var(--gold-dim);border-radius:2px;z-index:-1;}
+  .about-right{padding-top:12px;}
+  .about-eyebrow{font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .7s ease forwards .1s;}
+  .about-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+  .about-h1{font-family:var(--serif);font-size:clamp(40px,5vw,64px);font-weight:400;line-height:1.1;color:var(--text);margin-bottom:32px;opacity:0;animation:fadeUp .7s ease forwards .2s;}
+  .about-h1 em{font-style:italic;color:var(--gold);}
+  .about-intro{font-size:15.5px;font-weight:300;line-height:1.85;color:var(--text-muted);margin-bottom:40px;opacity:0;animation:fadeUp .7s ease forwards .35s;}
+  .about-intro p+p{margin-top:16px;}
+  
+  .section-wrap{position:relative;z-index:1;border-top:0.5px solid var(--border);background:var(--bg-2);}
+  .section-inner{max-width:1400px;margin:0 auto;padding:80px 48px;}
+  .section-title{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--text);margin-bottom:48px;display:flex;align-items:center;gap:16px;}
+  .section-title::after{content:'';flex-grow:1;height:1px;background:var(--border);}
 
-.about-text{padding-top:8px;}
-.page-eyebrow{font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px;margin-bottom:24px;opacity:0;animation:fadeUp .7s ease forwards .1s;}
-.page-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
-.about-h1{font-family:var(--serif);font-size:clamp(38px,5vw,62px);font-weight:400;line-height:1.1;color:var(--text);margin-bottom:28px;opacity:0;animation:fadeUp .7s ease forwards .2s;}
-.about-h1 em{font-style:italic;color:var(--gold);}
-.about-intro{font-size:15px;font-weight:300;line-height:1.88;color:var(--text-muted);margin-bottom:20px;opacity:0;animation:fadeUp .7s ease forwards .35s;}
-.about-para{font-size:15px;font-weight:300;line-height:1.88;color:var(--text-muted);margin-bottom:20px;}
+  .timeline{display:flex;flex-direction:column;gap:32px;}
+  .timeline-item{display:grid;grid-template-columns:180px 1fr;gap:48px;align-items:start;}
+  .time-meta{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);padding-top:6px;}
+  .time-content{}
+  .time-title{font-size:16px;font-weight:500;color:var(--text);margin-bottom:6px;}
+  .time-org{font-size:13px;font-style:italic;color:var(--text-muted);margin-bottom:12px;}
+  .time-desc{font-size:13.5px;font-weight:300;line-height:1.75;color:var(--text-muted);}
 
-/* personal tags */
-.personal-strip{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 36px;}
-.personal-tag{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:300;color:var(--text-muted);border:0.5px solid var(--border);padding:8px 14px;border-radius:2px;background:var(--bg-2);}
+  /* ── IMAGE CAROUSEL (Mobile Optimized) ── */
+  .carousel-wrapper { position: relative; max-width: 1000px; margin: 0 auto 80px auto; border: 0.5px solid var(--border); border-radius: 4px; background: var(--bg); overflow: hidden; }
+  .carousel-track-container { overflow: hidden; position: relative; }
+  .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+  .carousel-slide { min-width: 100%; position: relative; display: flex; flex-direction: column; }
+  .carousel-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; border-bottom: 0.5px solid var(--border); display: block; }
+  
+  /* Captions */
+  .carousel-caption { padding: 32px 40px; background: var(--bg); display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+  .caption-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--gold); line-height: 1.2; }
+  .caption-text { font-size: 14px; font-weight: 300; color: var(--text-muted); line-height: 1.65; margin: 0; }
+  
+  /* Navigation Arrows */
+  .carousel-btn { position: absolute; top: calc(50% - 60px); transform: translateY(-50%); width: 48px; height: 48px; background: rgba(9, 9, 14, 0.7); border: 0.5px solid var(--gold-dim); border-radius: 50%; color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: none; z-index: 10; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+  .carousel-btn:hover { background: var(--gold); color: var(--bg); transform: translateY(-50%) scale(1.05); }
+  .prev-btn { left: 20px; }
+  .next-btn { right: 20px; }
+  
+  /* Tracking Dots */
+  .carousel-nav { display: flex; justify-content: center; gap: 12px; padding: 24px 0; background: var(--bg); border-top: 0.5px solid var(--border); }
+  .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-hover); border: none; cursor: none; transition: all 0.3s; padding: 0; }
+  .carousel-dot.current-slide { background: var(--gold); transform: scale(1.3); }
 
-/* CTA row */
-.about-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;}
-.btn-primary{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:14px 28px;border:none;border-radius:2px;text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s;}
-.btn-primary:hover{opacity:.88;transform:translateY(-1px);}
-.btn-outline{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);background:transparent;border:0.5px solid var(--border);padding:14px 28px;border-radius:2px;text-decoration:none;display:inline-block;transition:all .2s;}
-.btn-outline:hover{border-color:var(--gold-dim);color:var(--gold);}
+  /* FOOTER */
+  footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg);}
+  .footer-logo{font-family:var(--serif);font-size:14px;color:var(--gold);text-decoration:none;}
+  .footer-links{display:flex;gap:28px;list-style:none;}
+  .footer-links a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .2s;}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
 
-/* SECTIONS */
-.section-wrap{position:relative;z-index:1;border-top:0.5px solid var(--border);}
-.section-inner{max-width:1400px;margin:0 auto;padding:80px 48px;}
-.sec-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.sec-title{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--text);margin-bottom:40px;line-height:1.2;}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.2s;}
 
-/* EDUCATION + EXPERIENCE TIMELINE */
-.timeline{display:flex;flex-direction:column;gap:0;}
-.timeline-item{display:grid;grid-template-columns:180px 1fr;gap:32px;padding:28px 0;border-bottom:0.5px solid var(--border);}
-.timeline-item:last-child{border-bottom:none;}
-.timeline-date{font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:var(--text-faint);padding-top:3px;}
-.timeline-content{}
-.timeline-title{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--text);margin-bottom:4px;}
-.timeline-org{font-size:12.5px;font-weight:400;color:var(--gold);margin-bottom:8px;}
-.timeline-desc{font-size:13px;font-weight:300;color:var(--text-muted);line-height:1.75;}
-.timeline-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-.chip{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);border:0.5px solid var(--border);padding:4px 10px;border-radius:20px;}
-
-/* SKILLS GRID */
-.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.skill-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:24px;transition:border-color .3s;}
-.skill-card:hover{border-color:var(--gold-dim);}
-.skill-card-title{font-family:var(--serif);font-size:16px;font-weight:400;color:var(--text);margin-bottom:12px;}
-.skill-list{display:flex;flex-direction:column;gap:6px;}
-.skill-item{font-size:12.5px;font-weight:300;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
-.skill-item::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
-
-/* INTERESTS */
-.interests-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.interest-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:24px;text-align:center;transition:border-color .3s;}
-.interest-card:hover{border-color:var(--gold-dim);}
-.interest-icon{font-size:28px;margin-bottom:10px;display:block;}
-.interest-title{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--text);margin-bottom:6px;}
-.interest-desc{font-size:11.5px;font-weight:300;color:var(--text-muted);line-height:1.6;}
-
-/* footer */
-footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-.footer-logo{font-family:var(--serif);font-size:14px;color:var(--gold);text-decoration:none;}
-.footer-links{display:flex;gap:28px;list-style:none;}
-.footer-links a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .2s;}
-.footer-links a:hover{color:var(--gold);}
-.footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}.rd3{transition-delay:.24s;}.rd4{transition-delay:.32s;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
 
 @media(max-width:600px){
   /* 1. Bulletproof Mobile Navigation (Grid Layout) */
-  nav { 
-    padding: 16px 20px !important; 
-    display: grid !important; 
-    grid-template-columns: auto auto !important; 
-    gap: 12px 0 !important; 
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
+  nav { padding: 16px 20px !important; display: grid !important; grid-template-columns: auto auto !important; gap: 12px 0 !important; align-items: center !important; justify-content: space-between !important; }
   .nav-logo { grid-column: 1 / 2 !important; white-space: nowrap !important; }
   .nav-cta { grid-column: 2 / 3 !important; justify-self: end !important; padding: 8px 14px !important; font-size: 9px !important; }
-  .nav-links { 
-    grid-column: 1 / 3 !important; 
-    display: flex !important; 
-    width: 100% !important; 
-    justify-content: flex-start !important; 
-    gap: 20px !important; 
-    margin: 0 !important; 
-    padding: 12px 0 4px !important; 
-    border-top: 0.5px solid var(--border) !important; 
-    overflow-x: auto !important; 
-    -webkit-overflow-scrolling: touch !important; 
-  }
+  .nav-links { grid-column: 1 / 3 !important; display: flex !important; width: 100% !important; justify-content: flex-start !important; gap: 20px !important; margin: 0 !important; padding: 12px 0 4px !important; border-top: 0.5px solid var(--border) !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
   .nav-links::-webkit-scrollbar { display: none !important; }
-  .nav-links li { flex-shrink: 0 !important; } /* Stops words from squishing */
+  .nav-links li { flex-shrink: 0 !important; } 
   .nav-links a { font-size: 10px !important; white-space: nowrap !important; }
   .nav-popup { display: none !important; }
 
@@ -149,305 +125,204 @@ footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(
   
   /* Typography & Padding */
   .about-h1 { font-size: clamp(2.5rem, 8vw, 3.5rem) !important; line-height: 1.1 !important; }
-  .section-inner { padding: 48px 20px !important; }
+  .section-inner { padding: 48px 20px !important; overflow-x: hidden !important; }
 
-  /* 3. Force Grids and Timelines to Stack */
-  .skills-grid, .interests-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+  /* 3. Force Timelines to Stack */
   .timeline-item { grid-template-columns: 1fr !important; gap: 12px !important; }
   
-  /* 4. Ensure Photo Never Breaks the Screen */
+  /* 4. EDGE-TO-EDGE Mobile Carousel */
+  .carousel-wrapper { 
+    margin: 0 -20px 60px -20px !important; /* Pulls it exactly to the edge of the screen */
+    border-radius: 0 !important; 
+    border-left: none !important; 
+    border-right: none !important; 
+    max-width: 100vw !important;
+  }
+  .carousel-image { aspect-ratio: 4/3 !important; width: 100% !important; max-width: 100vw !important; }
+  .carousel-caption { padding: 24px 20px !important; }
+  .caption-title { font-size: 18px !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; top: calc(50% - 70px) !important; background: rgba(9,9,14,0.85) !important; }
+  .prev-btn { left: 12px !important; }
+  .next-btn { right: 12px !important; }
+
+  /* Ensure Photo Never Breaks the Screen */
   img { max-width: 100% !important; height: auto !important; }
 }
 
 /* ── ABSOLUTE CURSOR KILL-SWITCH FOR MOBILE ── */
 @media (hover: none), (pointer: coarse), (max-width: 800px) {
   .cursor, .cursor-ring { display: none !important; opacity: 0 !important; visibility: hidden !important; }
-  * { cursor: auto !important; } /* Forces phone default interaction */
+  * { cursor: auto !important; } 
 }
 </style>
 </head>
 <body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <nav id="navbar">
   <a href="index.html" class="nav-logo">Abhinav Uppal</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
     <li><a href="about.html" class="active">About</a></li>
     <li><a href="insights.html">Insights</a></li>
     <li><a href="pm.html">PM Lab</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="contact.html" class="nav-cta">Get in Touch</a>
 </nav>
 
-<!-- HERO -->
 <div class="about-hero">
-  <div class="photo-col reveal">
-    <div class="photo-frame">
-      <img src="IMG_5866.jpeg" alt="Abhinav Uppal" />
-      <div class="photo-tag">
-        <div class="photo-tag-label">Based in</div>
-        <div class="photo-tag-val">Dublin, Ireland · From New Delhi</div>
-      </div>
-    </div>
+  <div class="photo-frame">
+    <img src="./IMG_5866.jpeg" alt="Abhinav Uppal">
   </div>
-
-  <div class="about-text">
-    <div class="page-eyebrow">Management Consultant in Training</div>
-    <h1 class="about-h1">Abhinav<br><em>Uppal</em></h1>
-
-    <p class="about-intro">I am a postgraduate student at UCD Michael Smurfit Graduate Business School, originally from New Delhi. My work sits at the intersection of structured analysis and real-world impact — from EV market entry strategies to CSR fundraising for underserved communities.</p>
-
-    <p class="about-para reveal">I completed my Bachelor of Commerce in First Division (7.955/10) at Motilal Nehru College, University of Delhi, where I also led the Content and Research department of our Commerce Society and served as a Senior Associate at 180 Degrees Consulting. Those experiences, particularly the RCED project, pulled me firmly towards consulting.</p>
-
-    <p class="about-para reveal">Consulting chose me as much as I chose it. The moment that made it clear was sitting across from an organisation that had spent 30 years training entrepreneurs in rural India and realising that good strategy could directly amplify that work. That feeling has stayed with me through every project since.</p>
-
-    <div class="personal-strip reveal">
-      <div class="personal-tag"><span style="color:var(--gold);">⚽</span> Manchester City</div>
-      <div class="personal-tag"><span style="color:var(--gold);">🏏</span> India · Delhi Capitals</div>
-      <div class="personal-tag"><span style="color:var(--gold);">🎵</span> Sade · Kenny Loggins</div>
-      <div class="personal-tag"><span style="color:var(--gold);">🎬</span> Thriller and Crime Films</div>
-      <div class="personal-tag"><span style="color:var(--gold);">🌍</span> Geopolitics and Defence Tech</div>
-    </div>
-
-    <div class="about-cta reveal">
-      <a href="work.html" class="btn-primary">View My Work</a>
-      <a href="Abhinav_Uppal_Summary_CV.docx" class="btn-outline" download>Download CV</a>
-      <a href="contact.html" class="btn-outline">Get in Touch</a>
+  <div class="about-right">
+    <div class="about-eyebrow">Background</div>
+    <h1 class="about-h1">The Thinking<br><em>Behind the Work</em></h1>
+    <div class="about-intro">
+      <p>I'm a Management Consultancy postgraduate at UCD Michael Smurfit, originally from New Delhi. I completed my B.Com in First Division (7.955/10) at Motilal Nehru College, University of Delhi, where I also led the Content &amp; Research department of our Commerce Society and served as a Senior Associate at 180 Degrees Consulting.</p>
+      <p>Consulting chose me as much as I chose it. The moment that made it clear was working with 180DC on the RCED project—sitting across from an organisation that had spent 30 years training entrepreneurs and lifting communities, and realising that good strategy could directly amplify that work.</p>
     </div>
   </div>
 </div>
 
-<!-- EDUCATION -->
 <div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Academic Background</div>
-  <div class="sec-title reveal">Education</div>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-date">Sept 2025 — Present</div>
-      <div class="timeline-content">
-        <div class="timeline-title">MSc Management Consultancy</div>
-        <div class="timeline-org">UCD Michael Smurfit Graduate Business School, Dublin</div>
-        <div class="timeline-desc">Core modules: Competitive and Corporate Strategy, Management Consulting Principles, Project Management, Organisational Behaviour. Live client engagements with Kempower Oyj, SEQ Ireland, and Accenture.</div>
-        <div class="timeline-chips"><span class="chip">Strategy</span><span class="chip">Consulting</span><span class="chip">Project Management</span><span class="chip">OB</span></div>
+  <div class="section-inner" style="padding-bottom: 0;">
+    <h2 class="section-title reveal">Visual Journey</h2>
+    
+    <div class="carousel-wrapper reveal reveal-delay-1">
+      <button class="carousel-btn prev-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="carousel-btn next-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="carouselTrack">
+          
+          <div class="carousel-slide">
+            <img src="./about_combuzz.jpg" alt="Combuzz 2024" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Combuzz 2024</h4>
+              <p class="caption-text">Celebrating the successful execution of Combuzz 2024 with the core organising team. Leading this flagship event was a defining operational experience during my undergraduate studies.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="./about_combrosia.jpg" alt="Combrosia Executive Board" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Combrosia Executive Board</h4>
+              <p class="caption-text">The moment I was appointed as an Executive Board member for Combrosia (Commerce Society), marking the beginning of my journey leading strategic campus initiatives.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="./about_kempower.jpg" alt="Kempower Strategy Win" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Kempower Strategy Win</h4>
+              <p class="caption-text">Presenting our Italian market entry strategy for Kempower Oyj. This comprehensive market analysis won our team first place in the inter-class strategy competition at UCD Smurfit.</p>
+            </div>
+          </div>
+
+        </div>
       </div>
-    </div>
-    <div class="timeline-item reveal rd1">
-      <div class="timeline-date">Oct 2022 — Jun 2025</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Bachelor of Commerce — First Division</div>
-        <div class="timeline-org">Motilal Nehru College, University of Delhi · 7.955 / 10</div>
-        <div class="timeline-desc">Key modules: Financial Accounting, Financial Management, Business Analytics using R. Led Content and Research at Combrosia Commerce Society for 3 years, managing a 10-member team and a sponsorship budget of over €8,000. Organised flagship events with 800+ attendees.</div>
-        <div class="timeline-chips"><span class="chip">B.Com First Division</span><span class="chip">R (Statistical Modelling)</span><span class="chip">Society Leadership</span></div>
+      
+      <div class="carousel-nav" id="carouselNav">
+        <button class="carousel-dot current-slide"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
       </div>
     </div>
   </div>
 </div>
-</div>
 
-<!-- INTERNSHIPS -->
 <div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Professional Experience</div>
-  <div class="sec-title reveal">Internships</div>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-date">Jun to Aug 2025</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Wealth Management Intern</div>
-        <div class="timeline-org">Merits Capital Market Services Pvt. Ltd., New Delhi</div>
-        <div class="timeline-desc">Managed client portfolios valued at €50,000 to €100,000. Generated €7,000 to €10,000 in new revenue through digital outreach. Maintained 100% data accuracy across all regulatory reporting.</div>
-        <div class="timeline-chips"><span class="chip">Portfolio Management</span><span class="chip">Client Acquisition</span><span class="chip">Financial Reporting</span></div>
+  <div class="section-inner">
+    <h2 class="section-title reveal">Education</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="time-meta">2025 – Present</div>
+        <div class="time-content">
+          <div class="time-title">MSc Management Consultancy</div>
+          <div class="time-org">UCD Michael Smurfit Graduate Business School</div>
+          <div class="time-desc">Modules including Competitive Strategy, Consulting Principles, Project Management, and Organisational Behaviour. Currently engaging in a live AI strategy project with Accenture.</div>
+        </div>
       </div>
-    </div>
-    <div class="timeline-item reveal rd1">
-      <div class="timeline-date">Jan to Apr 2025</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Supply Chain Planner</div>
-        <div class="timeline-org">Aramco Engineers, New Delhi</div>
-        <div class="timeline-desc">Reconciled €150,000 of stock using Excel. Audited inbound logistics workflows reducing weekly reporting time by 2 hours. Built a consolidated inventory tracker for ND/GD motors and AC drives.</div>
-        <div class="timeline-chips"><span class="chip">Supply Chain</span><span class="chip">Inventory Management</span><span class="chip">Excel</span></div>
-      </div>
-    </div>
-    <div class="timeline-item reveal rd2">
-      <div class="timeline-date">Mar 2024 · 1 month</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Digital Marketing Intern</div>
-        <div class="timeline-org">IIDE Global Virtual Internship Programme</div>
-        <div class="timeline-desc">Completed training and tasks across Social Media Marketing, SEO, Content Writing, and Google Workspace Management. Gained practical exposure to integrated digital marketing workflows.</div>
-        <div class="timeline-chips"><span class="chip">SEO</span><span class="chip">Social Media</span><span class="chip">Content Writing</span></div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="time-meta">2022 – 2025</div>
+        <div class="time-content">
+          <div class="time-title">Bachelor of Commerce</div>
+          <div class="time-org">Motilal Nehru College, University of Delhi</div>
+          <div class="time-desc">Graduated with First Division honours (7.955/10 CGPA). Specialised in Financial Accounting and Business Analytics.</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-
-<!-- PART TIME AND LEADERSHIP -->
-<div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Other Roles</div>
-  <div class="sec-title reveal">Part-time and Leadership</div>
-  <div class="timeline">
-    <div class="timeline-item reveal">
-      <div class="timeline-date">Jan 2026 — Present</div>
-      <div class="timeline-content">
-        <div class="timeline-title">After-School Team Member</div>
-        <div class="timeline-org">Kids Inc, Dublin</div>
-        <div class="timeline-desc">Maintained daily operational checklists and safety logs. Managed communications with parents and staff in a fast-paced environment while studying full-time at UCD Smurfit.</div>
-        <div class="timeline-chips"><span class="chip">Operations</span><span class="chip">Communication</span><span class="chip">Dublin</span></div>
-      </div>
-    </div>
-    <div class="timeline-item reveal rd1">
-      <div class="timeline-date">Aug 2023 — May 2024</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Senior Associate</div>
-        <div class="timeline-org">180 Degrees Consulting, Motilal Nehru College Chapter</div>
-        <div class="timeline-desc">Produced CSR fundraising pitch deck for RCED — an Indian NPO with 50,000+ entrepreneurs trained and 8 government ministry partnerships. Simultaneously analysed biotech market trends for a parallel engagement.</div>
-        <div class="timeline-chips"><span class="chip">CSR Strategy</span><span class="chip">Fundraising</span><span class="chip">Market Analysis</span></div>
-      </div>
-    </div>
-    <div class="timeline-item reveal rd2">
-      <div class="timeline-date">Oct 2022 — Jun 2025</div>
-      <div class="timeline-content">
-        <div class="timeline-title">Head, Content and Research Department</div>
-        <div class="timeline-org">Combrosia Commerce Society, Motilal Nehru College</div>
-        <div class="timeline-desc">Led research and production across 4+ society publications. Managed a 10-member team and oversaw a sponsorship budget of €8,000+. Organised flagship events Inspiron and Combuzz with 800+ attendees. Delivered financial literacy sessions for underprivileged staff. Led CSR initiatives across all 3 years including plantation drives and book donation camps.</div>
-        <div class="timeline-chips"><span class="chip">Team Leadership</span><span class="chip">Event Management</span><span class="chip">CSR</span><span class="chip">Public Speaking</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- SKILLS -->
-<div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Capabilities</div>
-  <div class="sec-title reveal">Skills and Frameworks</div>
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-card-title">Strategy Frameworks</div>
-      <div class="skill-list">
-        <div class="skill-item">VRIO Framework</div>
-        <div class="skill-item">Porter's Five Forces</div>
-        <div class="skill-item">PESTLE Analysis</div>
-        <div class="skill-item">CAGE Framework</div>
-        <div class="skill-item">McKinsey 7Ps</div>
-        <div class="skill-item">Ansoff Matrix</div>
-        <div class="skill-item">BCG Matrix</div>
-      </div>
-    </div>
-    <div class="skill-card reveal rd1">
-      <div class="skill-card-title">Analysis and Tools</div>
-      <div class="skill-list">
-        <div class="skill-item">MS Excel (Advanced)</div>
-        <div class="skill-item">R (Statistical Modelling)</div>
-        <div class="skill-item">Financial Modelling</div>
-        <div class="skill-item">Market Sizing</div>
-        <div class="skill-item">Competitor Benchmarking</div>
-        <div class="skill-item">Data Visualisation</div>
-      </div>
-    </div>
-    <div class="skill-card reveal rd2">
-      <div class="skill-card-title">Communication and Digital</div>
-      <div class="skill-list">
-        <div class="skill-item">PowerPoint (Executive Decks)</div>
-        <div class="skill-item">Canva (Design and Visualisation)</div>
-        <div class="skill-item">Public Speaking and Anchoring</div>
-        <div class="skill-item">SEO and Content Strategy</div>
-        <div class="skill-item">Google Cloud Platform</div>
-        <div class="skill-item">Social Media Marketing</div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CERTIFICATIONS -->
-<div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Credentials</div>
-  <div class="sec-title reveal">Certifications</div>
-  <div style="display:flex;flex-direction:column;gap:10px;">
-    <div style="display:flex;align-items:center;gap:16px;padding:18px 24px;border:0.5px solid var(--border);border-radius:4px;background:var(--bg-2);transition:border-color .3s;" class="reveal" onmouseover="this.style.borderColor='rgba(200,185,140,0.3)'" onmouseout="this.style.borderColor='rgba(200,185,140,0.12)'">
-      <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div>
-      <div style="flex:1;">
-        <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">Cloud Digital Leader</div>
-        <div style="font-size:11.5px;font-weight:300;color:var(--text-muted);">Google</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:16px;padding:18px 24px;border:0.5px solid var(--border);border-radius:4px;background:var(--bg-2);transition:border-color .3s;" class="reveal rd1" onmouseover="this.style.borderColor='rgba(200,185,140,0.3)'" onmouseout="this.style.borderColor='rgba(200,185,140,0.12)'">
-      <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div>
-      <div style="flex:1;">
-        <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">Introduction to AI and Machine Learning</div>
-        <div style="font-size:11.5px;font-weight:300;color:var(--text-muted);">Google</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:16px;padding:18px 24px;border:0.5px solid var(--border);border-radius:4px;background:var(--bg-2);transition:border-color .3s;" class="reveal rd2" onmouseover="this.style.borderColor='rgba(200,185,140,0.3)'" onmouseout="this.style.borderColor='rgba(200,185,140,0.12)'">
-      <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;"></div>
-      <div style="flex:1;">
-        <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px;">E-Commerce Employability — Grade A+</div>
-        <div style="font-size:11.5px;font-weight:300;color:var(--text-muted);">Infosys</div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- INTERESTS -->
-<div class="section-wrap">
-<div class="section-inner">
-  <div class="sec-eyebrow reveal">Outside of Work</div>
-  <div class="sec-title reveal">Interests</div>
-  <div class="interests-grid">
-    <div class="interest-card reveal">
-      <span class="interest-icon">⚽</span>
-      <div class="interest-title">Football</div>
-      <div class="interest-desc">Committed Manchester City supporter. Follow the Premier League closely — tactics, transfers, the lot.</div>
-    </div>
-    <div class="interest-card reveal rd1">
-      <span class="interest-icon">🏏</span>
-      <div class="interest-title">Cricket</div>
-      <div class="interest-desc">Follow the Indian national team and the Delhi Capitals in the IPL. Have watched more late-night matches than I should admit.</div>
-    </div>
-    <div class="interest-card reveal rd2">
-      <span class="interest-icon">🎵</span>
-      <div class="interest-title">80s Music</div>
-      <div class="interest-desc">Sade, Kenny Loggins, and that whole era. There is something about the production quality that nothing since has matched.</div>
-    </div>
-    <div class="interest-card reveal rd3">
-      <span class="interest-icon">🎬</span>
-      <div class="interest-title">Thriller Films</div>
-      <div class="interest-desc">Slow-burn crime and thriller films. I have a preference for high-stakes, methodical storytelling — probably explains the career choice.</div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CTA -->
-<div style="border-top:0.5px solid var(--border);padding:80px 48px;text-align:center;background:var(--bg-2);position:relative;z-index:1;">
-  <h2 style="font-family:var(--serif);font-size:clamp(26px,3.5vw,44px);font-weight:400;color:var(--text);margin-bottom:16px;font-style:italic;">Want to Work Together?</h2>
-  <p style="font-size:15px;font-weight:300;color:var(--text-muted);margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.75;">Open to graduate programmes, consulting roles, and project work. Based in Dublin, available remotely or to relocate.</p>
-  <a href="contact.html" class="btn-primary">Get in Touch</a>
 </div>
 
 <footer>
   <a href="index.html" class="footer-logo">Abhinav Uppal</a>
   <ul class="footer-links">
-    <li><a href="index.html">Home</a></li>
     <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="insights.html">Insights</a></li>
     <li><a href="pm.html">PM Lab</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <span class="footer-copy">© 2026 Abhinav Uppal · Delhi / Dublin</span>
+  <span class="footer-copy">© 2026 Abhinav Uppal</span>
 </footer>
 
 <script>
+// ── CURSOR LOGIC (DESKTOP ONLY) ──
+const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+if (window.innerWidth > 800 && window.matchMedia("(pointer: fine)").matches) {
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+} else {
+  if(cursor) cursor.style.display = 'none';
+  if(ring) ring.style.display = 'none';
+}
+
+// ── SCROLL ANIMATIONS ──
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── CAROUSEL LOGIC ──
+const track = document.getElementById('carouselTrack');
+const slides = Array.from(track.children);
+const nextButton = document.querySelector('.next-btn');
+const prevButton = document.querySelector('.prev-btn');
+const dotsNav = document.getElementById('carouselNav');
+const dots = Array.from(dotsNav.children);
+
+let currentSlideIndex = 0;
+
+function moveToSlide(index) {
+  track.style.transform = 'translateX(-' + index * 100 + '%)';
+  dots.forEach(dot => dot.classList.remove('current-slide'));
+  dots[index].classList.add('current-slide');
+  currentSlideIndex = index;
+}
+
+nextButton.addEventListener('click', () => {
+  const nextIndex = currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1;
+  moveToSlide(nextIndex);
+});
+
+prevButton.addEventListener('click', () => {
+  const prevIndex = currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1;
+  moveToSlide(prevIndex);
+});
+
+dotsNav.addEventListener('click', e => {
+  const targetDot = e.target.closest('button');
+  if (!targetDot) return;
+  const targetIndex = dots.findIndex(dot => dot === targetDot);
+  moveToSlide(targetIndex);
+});
 </script>
 </body>
 </html>
