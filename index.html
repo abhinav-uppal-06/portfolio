@@ -100,6 +100,529 @@
   .card-arrow svg{width:12px;height:12px;}
   .badge-progress{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,185,140,0.08);border:0.5px solid var(--gold-dim);padding:4px 10px;border-radius:20px;margin-bottom:12px;}
   .badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+  /* ── TESTIMONIALS (Interactive Spotlight) ── */
+  .testimonial-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+  .quote-display { position: relative; min-height: 250px; display: flex; flex-direction: column; justify-content: center; }
+  .quote-icon { font-family: var(--serif); font-size: 80px; color: var(--gold-dim); line-height: 0.5; margin-bottom: 20px; }
+  .test-quote { font-family: var(--serif); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; line-height: 1.5; color: var(--text); font-style: italic; display: none; }
+  .test-quote.active { display: block; animation: fadeInQuote 0.6s ease; }
+  .test-nav { display: flex; flex-direction: column; gap: 12px; border-left: 0.5px solid var(--border); padding-left: 32px; }
+  .test-tab { display: flex; flex-direction: column; text-align: left; background: transparent; border: none; cursor: none; padding: 16px 20px; border-radius: 4px; transition: all 0.3s; position: relative; }
+  .test-tab::before { content: ''; position: absolute; left: -32px; top: 0; bottom: 0; width: 2px; background: var(--gold); transform: scaleY(0); transition: transform 0.3s; transform-origin: left; }
+  .test-tab:hover { background: rgba(200, 185, 140, 0.03); }
+  .test-tab.active::before { transform: scaleY(1); }
+  .test-tab.active { background: var(--gold-faint); }
+  .tab-name { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+  .tab-role { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); line-height: 1.4; }
+  @keyframes fadeInQuote { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── IMAGE CAROUSEL ── */
+  .carousel-wrapper { position: relative; max-width: 1000px; margin: 0 auto; border: 0.5px solid var(--border); border-radius: 4px; background: var(--bg); overflow: hidden; }
+  .carousel-track-container { overflow: hidden; position: relative; }
+  .carousel-track { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+  .carousel-slide { min-width: 100%; position: relative; display: flex; flex-direction: column; }
+  .carousel-image { width: 100%; aspect-ratio: 16/9; object-fit: cover; object-position: center; border-bottom: 0.5px solid var(--border); display: block; filter: grayscale(15%) contrast(1.05); }
+  .carousel-caption { padding: 32px 40px; background: var(--bg); display: flex; flex-direction: column; gap: 8px; }
+  .caption-title { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--gold); line-height: 1.2; }
+  .caption-text { font-size: 14px; font-weight: 300; color: var(--text-muted); line-height: 1.65; }
+  
+  .carousel-btn { position: absolute; top: calc(50% - 60px); transform: translateY(-50%); width: 48px; height: 48px; background: rgba(9, 9, 14, 0.7); border: 0.5px solid var(--gold-dim); border-radius: 50%; color: var(--gold); display: flex; align-items: center; justify-content: center; cursor: none; z-index: 10; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+  .carousel-btn:hover { background: var(--gold); color: var(--bg); transform: translateY(-50%) scale(1.05); }
+  .prev-btn { left: 20px; }
+  .next-btn { right: 20px; }
+  
+  .carousel-nav { display: flex; justify-content: center; gap: 12px; padding: 24px 0; background: var(--bg); border-top: 0.5px solid var(--border); }
+  .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-hover); border: none; cursor: none; transition: all 0.3s; padding: 0; }
+  .carousel-dot.current-slide { background: var(--gold); transform: scale(1.3); }
+
+  /* CTA & FOOTER */
+  .cta-band{border-top:0.5px solid var(--border);padding:80px 48px;text-align:center;background:var(--bg-2);position:relative;z-index:1;overflow:hidden;}
+  .cta-band::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(200,185,140,0.04) 0%,transparent 70%);pointer-events:none;}
+  .cta-band h2{font-family:var(--serif);font-size:clamp(26px,3.5vw,46px);font-weight:400;color:var(--text);margin-bottom:16px;font-style:italic;}
+  .cta-band p{font-size:15px;font-weight:300;color:var(--text-muted);margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.75;}
+  .contact-row{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:36px;}
+  .contact-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+  .contact-link:hover{color:var(--gold);}
+  
+  footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .footer-logo{font-family:var(--serif);font-size:14px;color:var(--gold);text-decoration:none;}
+  .footer-links{display:flex;gap:28px;list-style:none;}
+  .footer-links a{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-faint);text-decoration:none;transition:color .2s;}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-copy{font-family:var(--mono);font-size:10px;color:var(--text-faint);}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.2s;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+
+@media(max-width:1100px){
+  nav{padding:18px 28px;}
+  .hero-wrap{grid-template-columns:1fr;padding:120px 28px 60px;gap:40px;}
+  .hero-right{display:grid;grid-template-columns:repeat(3,1fr);}
+  .section-inner{padding:72px 28px;}
+  .testimonial-layout { grid-template-columns: 1fr; gap: 40px; }
+  .test-nav { border-left: none; border-top: 0.5px solid var(--border); padding-left: 0; padding-top: 24px; flex-direction: row; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .test-tab { min-width: 200px; flex-shrink: 0; }
+  .test-tab::before { left: 0; top: -24px; width: 100%; height: 2px; transform: scaleX(0); transform-origin: left; }
+  .test-tab.active::before { transform: scaleX(1); }
+  footer{flex-direction:column;gap:20px;text-align:center;}
+}
+
+@media(max-width:600px){
+  /* Mobile Navigation Grid */
+  nav { padding: 16px 20px !important; display: grid !important; grid-template-columns: auto auto !important; gap: 12px 0 !important; align-items: center !important; justify-content: space-between !important; }
+  .nav-logo { grid-column: 1 / 2 !important; white-space: nowrap !important; }
+  .nav-cta { grid-column: 2 / 3 !important; justify-self: end !important; padding: 8px 14px !important; font-size: 9px !important; }
+  .nav-links { grid-column: 1 / 3 !important; display: flex !important; width: 100% !important; justify-content: flex-start !important; gap: 20px !important; margin: 0 !important; padding: 12px 0 4px !important; border-top: 0.5px solid var(--border) !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  .nav-links::-webkit-scrollbar { display: none !important; }
+  .nav-links li { flex-shrink: 0 !important; } 
+  .nav-links a { font-size: 10px !important; white-space: nowrap !important; }
+  .nav-popup { display: none !important; }
+
+  /* Hero */
+  .hero-wrap { padding: 170px 20px 60px !important; gap: 40px !important; }
+  .hero-right { grid-template-columns: 1fr !important; }
+  h1 { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
+  .section-inner { padding: 60px 20px !important; overflow-x: hidden !important; }
+
+  /* Grids */
+  .home-projects-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  
+  /* Testimonials */
+  .quote-display { min-height: 340px; }
+
+  /* EDGE-TO-EDGE Mobile Carousel */
+  .carousel-wrapper { 
+    margin: 0 -20px 0 -20px !important; 
+    border-radius: 0 !important; 
+    border-left: none !important; 
+    border-right: none !important; 
+    max-width: 100vw !important;
+  }
+  .carousel-image { aspect-ratio: 4/3 !important; width: 100% !important; max-width: 100vw !important; }
+  .carousel-caption { padding: 24px 20px !important; }
+  .caption-title { font-size: 18px !important; }
+  .caption-text { margin: 0 !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; top: calc(50% - 70px) !important; background: rgba(9,9,14,0.85) !important; }
+  .prev-btn { left: 12px !important; }
+  .next-btn { right: 12px !important; }
+
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+  img { max-width: 100% !important; height: auto !important; }
+}
+
+/* ── ABSOLUTE CURSOR KILL-SWITCH FOR MOBILE ── */
+@media (hover: none), (pointer: coarse), (max-width: 800px) {
+  .cursor, .cursor-ring { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+  * { cursor: auto !important; } 
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">Abhinav Uppal</a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a><div class="nav-popup"><div class="nav-popup-title">All Projects</div><div class="nav-popup-desc">Every consulting engagement, research project, and work experience.</div></div></li>
+    <li><a href="about.html">About</a><div class="nav-popup"><div class="nav-popup-title">About</div><div class="nav-popup-desc">Background, education, experience, and the person behind the work.</div></div></li>
+    <li><a href="insights.html">Insights</a><div class="nav-popup"><div class="nav-popup-title">Strategic Perspectives</div><div class="nav-popup-desc">Three articles from live projects: Kempower, Ecomm Edge, and RCED.</div></div></li>
+    <li><a href="pm.html">PM Lab</a><div class="nav-popup"><div class="nav-popup-title">Project Management</div><div class="nav-popup-desc">WBS, Gantt chart, stakeholder matrix, and time log for this website build.</div></div></li>
+    <li><a href="contact.html">Contact</a><div class="nav-popup"><div class="nav-popup-title">Get in Touch</div><div class="nav-popup-desc">Email, phone, LinkedIn, and a contact form.</div></div></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get in Touch</a>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero-left">
+    <div class="eyebrow">
+      <div class="eyebrow-rule"></div>
+      <span class="eyebrow-text">MSc Management Consultancy &nbsp;·&nbsp; UCD Michael Smurfit</span>
+    </div>
+    <h1>Strategy.<br>Evidence.<br><span class="ig">Impact.</span></h1>
+    <p class="hero-body">
+      From EV market entry in Italy to digital growth for Irish nonprofits—I work where rigorous analysis meets real-world implementation. Currently consulting with Accenture on AI-driven predictive maintenance in the utilities sector.
+    </p>
+    <div class="cta-row">
+      <a href="work.html" class="btn-primary">View Case Studies</a>
+      <a href="Abhinav_Uppal_Summary_CV.docx" class="btn-ghost" target="_blank">
+        <div class="btn-ghost-line"></div>
+        Download CV
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="glass-card">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Consulting Projects</div>
+      <div class="stat-desc">Kempower · SEQ Ireland · RCED · Accenture · Ecomm Edge</div>
+    </div>
+    <div class="glass-card">
+      <div class="stat-num">B.Com</div>
+      <div class="stat-label">First Division</div>
+      <div class="stat-desc">7.955 / 10 · Motilal Nehru College · University of Delhi</div>
+    </div>
+    <div class="glass-card">
+      <div class="stat-num">180DC</div>
+      <div class="stat-label">Consulting Society</div>
+      <div class="stat-desc">Senior Associate · CSR & social impact engagements</div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Current</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Certifications</span><span class="ticker-val">Google Cloud Digital Leader · Intro to AI & ML (Google) · E-Commerce Grade A+ (Infosys)</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Open to</span><span class="ticker-val">Graduate Programmes · Full-time Consulting · Dublin / Remote / Relocate</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Current</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
+  </div>
+</div>
+
+<div class="section-wrap">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Selected Work</div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <a href="work.html" class="section-link"><div class="section-link-arrow"></div>All projects</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;margin-bottom:48px;" class="home-projects-grid">
+
+      <a href="work.html" class="project-card reveal">
+        <div>
+          <div class="card-tag">Digital Growth</div>
+          <h3 class="card-title">SEQ Ireland Digital Growth Strategy</h3>
+          <p class="card-desc">Audited SEQ's digital presence against 3 competitors, identified 5 website gaps, and designed a 60:40 Google-to-Meta ad strategy projecting 10–15% uplift in qualified enquiries. Built a tiered pricing model and expansion plan.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-chips">
+            <span class="chip">Digital Audit</span><span class="chip">Paid Media</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
+        </div>
+      </a>
+
+      <a href="work.html" class="project-card reveal reveal-delay-1">
+        <div>
+          <div class="badge-progress"><div class="badge-dot"></div> In Progress</div>
+          <div class="card-tag">AI Strategy · Utilities</div>
+          <h3 class="card-title">Accenture AI Predictive Maintenance</h3>
+          <p class="card-desc">Developing a research analysis on how AI-driven predictive maintenance can reduce unplanned downtime for utilities providers. Examining data readiness barriers, deployment frameworks, and organisational conditions.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-chips">
+            <span class="chip">AI Strategy</span><span class="chip">Utilities</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
+        </div>
+      </a>
+
+      <a href="work.html" class="project-card reveal reveal-delay-2">
+        <div>
+          <div class="card-tag">Market Strategy</div>
+          <h3 class="card-title">Kempower Italian Market Entry</h3>
+          <p class="card-desc">Led internal analysis for a Finnish EV charging manufacturer's entry into Italy. Applied VRIO to identify core competitive advantages and designed a phased 0–36 month go-to-market via three strategic local partnerships.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-chips">
+            <span class="chip">VRIO</span><span class="chip">Go-to-Market</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
+        </div>
+      </a>
+    </div>
+    
+    <div class="reveal" style="text-align:center;">
+      <a href="work.html" style="display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text);background:var(--bg-2);border:0.5px solid var(--border);padding:16px 36px;border-radius:2px;text-decoration:none;transition:all .3s;cursor:none;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)';">
+        View All Projects
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap" style="background:var(--bg-2);">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Reputation</div>
+        <h2 class="section-title">Professional Feedback</h2>
+      </div>
+    </div>
+    
+    <div class="testimonial-layout reveal reveal-delay-1">
+      
+      <div class="quote-display">
+        <div class="quote-icon">"</div>
+        <p class="test-quote active" id="quote-0">
+          I have had the pleasure of mentoring Abhinav for several months, he has consistently distinguished himself as a proactive, tech-forward, and highly adaptable young professional. What immediately stands out is his genuine enthusiasm to learn and action guidance. He approaches every challenge with curiosity and energy. He is exceptionally coachable, takes direction with precision, and possesses the emotional intelligence to navigate professional environments with ease. I have no doubt he will be a valuable asset to any Project Controls or Management Consulting team.
+        </p>
+        <p class="test-quote" id="quote-1">
+          Abhinav is a truly valued member of our after-school team at Kids Inc. In a fast-paced environment that requires high energy and constant communication, he is incredibly dependable and always carries himself with a positive, polite attitude. His ability to connect with people and handle responsibilities with care is exactly what makes him such a great colleague.
+        </p>
+        <p class="test-quote" id="quote-2">
+          Abhinav demonstrated strong analytical ability and a proactive mindset during his time with our supply chain team. He quickly adapted to processes, handled responsibilities with precision, and consistently showed a willingness to learn. His reliability, attention to detail, and collaborative approach made him a valuable contributor to the team.
+        </p>
+      </div>
+
+      <div class="test-nav">
+        <button class="test-tab active" data-index="0">
+          <div class="tab-name">Fionn Lawlor</div>
+          <div class="tab-role">GLP Mentor</div>
+        </button>
+        <button class="test-tab" data-index="1">
+          <div class="tab-name">Tekin Yoldas</div>
+          <div class="tab-role">Area Manager · Kids Inc</div>
+        </button>
+        <button class="test-tab" data-index="2">
+          <div class="tab-name">Sandip Tandon</div>
+          <div class="tab-role">Partner · Aramco Engineers</div>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="section-wrap">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-eyebrow">Life &amp; Culture</div>
+        <h2 class="section-title">Behind the Scenes</h2>
+      </div>
+      <a href="about.html" class="section-link"><div class="section-link-arrow"></div>Full Profile</a>
+    </div>
+
+    <div class="carousel-wrapper reveal reveal-delay-1">
+      <button class="carousel-btn prev-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="carousel-btn next-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="homeCarouselTrack">
+          
+          <div class="carousel-slide">
+            <img src="./at_ucd.jpg" alt="UCD Smurfit Campus" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">MSc Management Consultancy</h4>
+              <p class="caption-text">Engaging in postgraduate studies at UCD Michael Smurfit Graduate Business School, building out advanced frameworks in strategy, operations, and organisational behaviour.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="./about_kempower.jpg" alt="Kempower Strategy Present" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Strategic Execution</h4>
+              <p class="caption-text">Presenting the Kempower Italian market entry strategy at UCD Smurfit. Our team placed first in the inter-class strategy competition for our rigorous VRIO and partnership analysis.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="./combrosia.jpg" alt="Combrosia Society" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Combrosia Leadership</h4>
+              <p class="caption-text">Building community and leading strategic initiatives as part of the Commerce Society, fostering a culture of professional development and engagement.</p>
+            </div>
+          </div>
+
+          <div class="carousel-slide">
+            <img src="./filmistaan.jpeg" alt="Filmistaan Cultural Event" class="carousel-image">
+            <div class="carousel-caption">
+              <h4 class="caption-title">Cultural Leadership</h4>
+              <p class="caption-text">Balancing academic rigor with cultural execution at university events like Filmistaan. It takes the same organizational skills to run a successful large-scale event as it does a strategic project.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="carousel-nav" id="homeCarouselNav">
+        <button class="carousel-dot current-slide"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
+        <button class="carousel-dot"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <h2>Let's Work Together</h2>
+  <p>Open to graduate programmes, consulting roles, and project-based engagements. Based in Dublin—available to relocate or work remotely.</p>
+  <div class="contact-row">
+    <a href="mailto:workxabhinav@gmail.com" class="contact-link">workxabhinav@gmail.com</a>
+    <a href="tel:+353894892500" class="contact-link">
+      <svg viewBox="0 0 14 14" fill="none"><path d="M3 2h3l1 3-1.5 1.5a8 8 0 003 3L10 8l3 1v3a1 1 0 01-1 1A11 11 0 012 3a1 1 0 011-1z" stroke="currentColor" stroke-width="1"/></svg>
+      +353 89 489 2500
+    </a>
+    <a href="https://www.linkedin.com/in/abhinavuppal116" target="_blank" class="contact-link">
+      <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1"/><path d="M4 6v4M4 4v.01M7 10V8a1 1 0 012 0v2M7 6v1" stroke="currentColor" stroke-width="1"/></svg>
+      LinkedIn Profile
+    </a>
+  </div>
+  <a href="contact.html" class="btn-primary">Start a Conversation</a>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">Abhinav Uppal</a>
+  <ul class="footer-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="insights.html">Insights</a></li>
+    <li><a href="pm.html">PM Lab</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Abhinav Uppal · Delhi / Dublin</span>
+</footer>
+
+<script>
+// ── CURSOR LOGIC (DESKTOP ONLY) ──
+const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+if (window.innerWidth > 800 && window.matchMedia("(pointer: fine)").matches) {
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
+} else {
+  if(cursor) cursor.style.display = 'none';
+  if(ring) ring.style.display = 'none';
+}
+
+// ── SCROLL & REVEAL ANIMATIONS ──
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── TESTIMONIAL LOGIC ──
+const tabs = document.querySelectorAll('.test-tab');
+const quotes = document.querySelectorAll('.test-quote');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    quotes.forEach(q => q.classList.remove('active'));
+    tab.classList.add('active');
+    const index = tab.getAttribute('data-index');
+    document.getElementById('quote-' + index).classList.add('active');
+  });
+});
+
+// ── CAROUSEL LOGIC ──
+const track = document.getElementById('homeCarouselTrack');
+const slides = Array.from(track.children);
+const nextButton = document.querySelector('.next-btn');
+const prevButton = document.querySelector('.prev-btn');
+const dotsNav = document.getElementById('homeCarouselNav');
+const dots = Array.from(dotsNav.children);
+
+let currentSlideIndex = 0;
+
+function moveToSlide(index) {
+  track.style.transform = 'translateX(-' + index * 100 + '%)';
+  dots.forEach(dot => dot.classList.remove('current-slide'));
+  dots[index].classList.add('current-slide');
+  currentSlideIndex = index;
+}
+
+nextButton.addEventListener('click', () => {
+  const nextIndex = currentSlideIndex === slides.length - 1 ? 0 : currentSlideIndex + 1;
+  moveToSlide(nextIndex);
+});
+
+prevButton.addEventListener('click', () => {
+  const prevIndex = currentSlideIndex === 0 ? slides.length - 1 : currentSlideIndex - 1;
+  moveToSlide(prevIndex);
+});
+
+dotsNav.addEventListener('click', e => {
+  const targetDot = e.target.closest('button');
+  if (!targetDot) return;
+  const targetIndex = dots.findIndex(dot => dot === targetDot);
+  moveToSlide(targetIndex);
+});
+</script>
+</body>
+</html>  .nav-links li:hover .nav-popup{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+  .nav-popup::before{content:'';position:absolute;top:-5px;left:50%;width:8px;height:8px;background:var(--bg-2);border-left:0.5px solid var(--gold-dim);border-top:0.5px solid var(--gold-dim);transform:translateX(-50%) rotate(45deg);}
+  .nav-popup-title{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .nav-popup-desc{font-size:11px;font-weight:300;color:var(--text-muted);line-height:1.6;}
+  .nav-cta{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:10px 22px;border:none;cursor:none;border-radius:2px;text-decoration:none;transition:opacity .2s,transform .2s;}
+  .nav-cta:hover{opacity:.88;transform:translateY(-1px);}
+
+  /* HERO */
+  .hero-wrap{max-width:1400px;margin:0 auto;padding:140px 48px 80px;display:grid;grid-template-columns:1fr 360px;gap:64px;align-items:center;min-height:100vh;}
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;animation:fadeUp .7s ease forwards .1s;}
+  .eyebrow-rule{width:36px;height:1px;background:var(--gold);flex-shrink:0;}
+  .eyebrow-text{font-family:var(--mono);font-size:10px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+  h1{font-family:var(--serif);font-size:clamp(42px,5.5vw,70px);font-weight:400;line-height:1.08;color:var(--text);margin-bottom:28px;opacity:0;animation:fadeUp .7s ease forwards .25s;}
+  h1 .ig{font-style:italic;color:var(--gold);}
+  .hero-body{font-size:15px;font-weight:300;line-height:1.82;color:var(--text-muted);max-width:500px;margin-bottom:40px;opacity:0;animation:fadeUp .7s ease forwards .4s;}
+  .cta-row{display:flex;align-items:center;gap:24px;opacity:0;animation:fadeUp .7s ease forwards .55s;}
+  .btn-primary{font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:14px 30px;border:none;cursor:none;border-radius:2px;text-decoration:none;display:inline-block;transition:opacity .2s,transform .2s;}
+  .btn-primary:hover{opacity:.88;transform:translateY(-2px);}
+  .btn-ghost{font-family:var(--sans);font-size:10.5px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);background:transparent;border:none;cursor:none;display:flex;align-items:center;gap:10px;text-decoration:none;transition:color .2s;}
+  .btn-ghost:hover{color:var(--gold);}
+  .btn-ghost-line{width:24px;height:1px;background:currentColor;transition:width .25s;}
+  .btn-ghost:hover .btn-ghost-line{width:36px;}
+  .hero-right{display:flex;flex-direction:column;gap:12px;opacity:0;animation:fadeIn .9s ease forwards .5s;}
+  .glass-card{background:var(--gold-faint);border:0.5px solid var(--gold-dim);border-radius:4px;padding:22px 24px;transition:border-color .3s,background .3s;}
+  .glass-card:hover{border-color:var(--border-hover);background:rgba(200,185,140,0.09);}
+  .stat-num{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--gold);line-height:1;margin-bottom:4px;}
+  .stat-label{font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;}
+  .stat-desc{font-size:12px;font-weight:300;color:var(--text-muted);line-height:1.55;}
+
+  /* TICKER */
+  .ticker-wrap{border-top:0.5px solid var(--border);overflow:hidden;padding:15px 0;}
+  .ticker-track{display:flex;animation:ticker 30s linear infinite;width:max-content;}
+  .ticker-item{display:flex;align-items:center;gap:12px;padding:0 40px;white-space:nowrap;border-right:0.5px solid var(--border);}
+  .ticker-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+  .ticker-label{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-faint);}
+  .ticker-val{font-size:9.5px;letter-spacing:.1em;color:var(--text-muted);}
+  @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* SECTIONS */
+  .section-wrap{position:relative;z-index:1;border-top:0.5px solid var(--border);}
+  .section-inner{max-width:1400px;margin:0 auto;padding:96px 48px;}
+  .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;padding-bottom:24px;border-bottom:0.5px solid var(--border);}
+  .section-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .section-title{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:400;color:var(--text);line-height:1.15;}
+  .section-link{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+  .section-link:hover{color:var(--gold);}
+  .section-link-arrow{width:20px;height:1px;background:currentColor;transition:width .2s;}
+  .section-link:hover .section-link-arrow{width:32px;}
+
+  /* PROJECTS GRID */
+  .project-card{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:space-between;cursor:none;min-height:280px;}
+  .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s;}
+  .project-card:hover{border-color:var(--border-hover);transform:translateY(-3px);}
+  .project-card:hover::before{opacity:1;}
+  .card-tag{font-family:var(--mono);font-size:9px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .card-tag::before{content:'';display:block;width:16px;height:1px;background:var(--gold);}
+  .card-title{font-family:var(--serif);font-size:21px;font-weight:400;color:var(--text);line-height:1.25;margin-bottom:12px;}
+  .card-desc{font-size:13px;font-weight:300;line-height:1.75;color:var(--text-muted);margin-bottom:24px;flex-grow:1;}
+  .card-footer{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:16px;margin-top:auto;}
+  .card-chips{display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);border:0.5px solid var(--border);padding:4px 10px;border-radius:20px;}
+  .card-arrow{width:28px;height:28px;border:0.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,background .2s;}
+  .project-card:hover .card-arrow{border-color:var(--gold);background:var(--gold-faint);}
+  .card-arrow svg{width:12px;height:12px;}
+  .badge-progress{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,185,140,0.08);border:0.5px solid var(--gold-dim);padding:4px 10px;border-radius:20px;margin-bottom:12px;}
+  .badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 1.8s ease-in-out infinite;}
 
   /* ── TESTIMONIALS (Interactive Spotlight) ── */
   .testimonial-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
