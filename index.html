@@ -194,8 +194,8 @@
 .carousel-title{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;color:var(--text);margin-bottom:36px;}
 .carousel-track-wrap{position:relative;overflow:hidden;border-radius:4px;border:0.5px solid var(--border);}
 .carousel-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
-.carousel-slide{min-width:100%;aspect-ratio:16/7;overflow:hidden;position:relative;}
-.carousel-slide img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:grayscale(10%) contrast(1.03);}
+.carousel-slide{min-width:100%;height:480px;overflow:hidden;}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:grayscale(10%) contrast(1.03);}
 .carousel-controls{display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
 .carousel-dots{display:flex;gap:8px;align-items:center;}
 .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:0.5px solid var(--border-hover);cursor:pointer;transition:background .25s,transform .2s;}
@@ -214,8 +214,8 @@
   .card-lg,.card-md,.card-sm{grid-column:span 1;}
   .expertise-inner{grid-template-columns:repeat(2,1fr);gap:32px;}
   .expertise-col{border-right:none;padding:0;}
-  .about-grid{grid-template-columns:1fr;gap:60px;}
-  .about-photo-frame img{aspect-ratio:4/3;}
+  .about-grid{grid-template-columns:300px 1fr;gap:48px;}
+  .about-photo-frame img{aspect-ratio:3/4;}
   .insights-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:20px;text-align:center;}
 .testimonials-grid{grid-template-columns:1fr;gap:36px;}
@@ -223,7 +223,7 @@
   .testimonial-tabs::-webkit-scrollbar{display:none;}
   .testimonial-tab{flex-shrink:0;min-width:200px;}
   .carousel-section{padding:60px 28px;}
- .carousel-slide{aspect-ratio:16/8;min-height:280px;}
+ .carousel-slide{height:340px;}
 }
 
 @media(max-width:600px){
@@ -241,7 +241,7 @@
   .testimonial-tab { min-width: 170px; padding: 14px 16px; }
   .carousel-section { padding: 48px 0; }
   .carousel-inner { padding: 0 20px; }
-  .carousel-slide { aspect-ratio: 4/3; min-height:240px; }
+ .carousel-slide { height:260px; }
              }
 
   /* Footer */
@@ -542,12 +542,12 @@
     <div class="carousel-title reveal">Behind the Work</div>
     <div class="carousel-track-wrap reveal">
       <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="./at_ucd.jpg?v=1" alt="At UCD Smurfit" loading="lazy"></div>
-        <div class="carousel-slide"><img src="./accenture_presentation_1.jpg?v=1" alt="Accenture Client Presentation" loading="lazy"></div>
-        <div class="carousel-slide"><img src="./accenture_presentation_2.jpg?v=1" alt="Accenture Presentation Team" loading="lazy"></div>
-        <div class="carousel-slide"><img src="./about_kempower.jpg?v=1" alt="Kempower Project" loading="lazy"></div>
-        <div class="carousel-slide"><img src="./combrosia.jpg?v=1" alt="Combrosia Society" loading="lazy"></div>
-        <div class="carousel-slide"><img src="./filmistaan.jpeg?v=1" alt="Filmistaan" loading="lazy"></div>
+       <div class="carousel-slide"><img src="./at_ucd.jpg" alt="At UCD Smurfit"></div>
+        <div class="carousel-slide"><img src="./accenture_presentation_1.jpg" alt="Accenture Client Presentation"></div>
+        <div class="carousel-slide"><img src="./accenture_presentation_2.jpg" alt="Accenture Presentation Team"></div>
+        <div class="carousel-slide"><img src="./about_kempower.jpg" alt="Kempower Project"></div>
+        <div class="carousel-slide"><img src="./combrosia.jpg" alt="Combrosia Society"></div>
+        <div class="carousel-slide"><img src="./filmistaan.jpeg" alt="Filmistaan"></div>
       </div>
     </div>
     <div class="carousel-controls">
