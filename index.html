@@ -98,6 +98,9 @@
   .card-arrow{width:28px;height:28px;border:0.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,background .2s;}
   .project-card:hover .card-arrow{border-color:var(--gold);background:var(--gold-faint);}
   .card-arrow svg{width:12px;height:12px;}
+  .badge-progress{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:rgba(200,185,140,0.08);border:0.5px solid var(--gold-dim);padding:4px 10px;border-radius:20px;margin-bottom:12px;}
+  .badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 
   /* EXPERTISE STRIP */
   .expertise-strip{border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);padding:60px 48px;background:var(--bg-2);position:relative;z-index:1;}
@@ -147,7 +150,7 @@
   .contact-row{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:36px;}
   .contact-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
   .contact-link:hover{color:var(--gold);}
-
+  
   footer{position:relative;z-index:1;padding:36px 48px;border-top:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
   .footer-logo{font-family:var(--serif);font-size:14px;color:var(--gold);text-decoration:none;}
   .footer-links{display:flex;gap:28px;list-style:none;}
@@ -164,94 +167,112 @@
   ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
 
   /* ── TESTIMONIALS ── */
-  .testimonials-section{max-width:1400px;margin:0 auto;padding:96px 48px;}
-  .testimonials-grid{display:grid;grid-template-columns:1fr 300px;gap:64px;align-items:start;}
-  .testimonial-quote-area{position:relative;min-height:260px;}
-  .testimonial-quote{position:absolute;top:0;left:0;width:100%;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
-  .testimonial-quote.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
-  .testimonial-quote blockquote{font-family:var(--serif);font-size:clamp(17px,2vw,23px);font-weight:400;font-style:italic;color:var(--text);line-height:1.7;margin-bottom:28px;}
-  .testimonial-quote blockquote::before{content:'\201C';font-size:64px;color:var(--gold);line-height:0;vertical-align:-24px;margin-right:4px;font-style:normal;}
-  .testimonial-attribution{display:flex;flex-direction:column;gap:3px;}
-  .testimonial-attribution .t-name{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--gold);letter-spacing:.06em;}
-  .testimonial-attribution .t-role{font-size:11.5px;font-weight:300;color:var(--text-muted);}
-  .testimonial-tabs{display:flex;flex-direction:column;gap:10px;padding-top:6px;}
-  .testimonial-tab{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:18px 20px;cursor:pointer;text-align:left;transition:border-color .25s,background .25s;width:100%;}
-  .testimonial-tab:hover{border-color:var(--border-hover);}
-  .testimonial-tab.active{border-color:var(--gold);background:var(--gold-faint);}
-  .testimonial-tab .tab-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;transition:color .2s;}
-  .testimonial-tab.active .tab-name{color:var(--gold);}
-  .testimonial-tab .tab-role{font-size:11px;font-weight:300;color:var(--text-muted);line-height:1.4;}
-  .testimonial-tab .tab-indicator{width:20px;height:1px;background:var(--gold);margin-top:10px;transform:scaleX(0);transform-origin:left;transition:transform .3s;}
-  .testimonial-tab.active .tab-indicator{transform:scaleX(1);}
+.testimonials-section{max-width:1400px;margin:0 auto;padding:96px 48px;}
+.testimonials-grid{display:grid;grid-template-columns:1fr 320px;gap:64px;align-items:start;}
+.testimonial-quote-area{position:relative;min-height:220px;}
+.testimonial-quote{position:absolute;top:0;left:0;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.testimonial-quote.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
+.testimonial-quote blockquote{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-weight:400;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:28px;}
+.testimonial-quote blockquote::before{content:'\201C';font-size:72px;color:var(--gold);line-height:0;vertical-align:-28px;margin-right:4px;font-style:normal;}
+.testimonial-attribution{display:flex;flex-direction:column;gap:3px;}
+.testimonial-attribution .t-name{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--gold);letter-spacing:.06em;}
+.testimonial-attribution .t-role{font-size:11.5px;font-weight:300;color:var(--text-muted);}
+.testimonial-tabs{display:flex;flex-direction:column;gap:10px;padding-top:6px;}
+.testimonial-tab{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:18px 20px;cursor:pointer;text-align:left;transition:border-color .25s,background .25s;}
+.testimonial-tab:hover{border-color:var(--border-hover);}
+.testimonial-tab.active{border-color:var(--gold);background:var(--gold-faint);}
+.testimonial-tab .tab-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;transition:color .2s;}
+.testimonial-tab.active .tab-name{color:var(--gold);}
+.testimonial-tab .tab-role{font-size:11px;font-weight:300;color:var(--text-muted);}
+.testimonial-tab .tab-indicator{width:20px;height:1px;background:var(--gold);margin-top:10px;transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.testimonial-tab.active .tab-indicator{transform:scaleX(1);}
 
-  /* ── CAROUSEL ── */
-  .carousel-section{border-top:0.5px solid var(--border);padding:80px 48px;position:relative;z-index:1;}
-  .carousel-inner{max-width:1400px;margin:0 auto;}
-  .carousel-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
-  .carousel-title{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;color:var(--text);margin-bottom:36px;}
-  .carousel-track-wrap{position:relative;overflow:hidden;border-radius:4px;border:0.5px solid var(--border);}
-  .carousel-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
-  .carousel-slide{min-width:100%;aspect-ratio:16/7;overflow:hidden;background:var(--bg-2);}
-  .carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:grayscale(10%) contrast(1.03);}
-  .carousel-controls{display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
-  .carousel-dots{display:flex;gap:8px;align-items:center;}
-  .carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:0.5px solid var(--border-hover);cursor:pointer;transition:background .25s,transform .2s;}
-  .carousel-dot.active{background:var(--gold);transform:scale(1.35);}
-  .carousel-arrows{display:flex;gap:10px;}
-  .carousel-btn{width:38px;height:38px;border:0.5px solid var(--border);border-radius:50%;background:var(--bg-2);color:var(--text-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
-  .carousel-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-faint);}
-  .carousel-btn svg{width:14px;height:14px;}
+/* ── CAROUSEL ── */
+.carousel-section{border-top:0.5px solid var(--border);padding:80px 48px;position:relative;z-index:1;}
+.carousel-inner{max-width:1400px;margin:0 auto;}
+.carousel-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
+.carousel-title{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;color:var(--text);margin-bottom:36px;}
+.carousel-track-wrap{position:relative;overflow:hidden;border-radius:4px;border:0.5px solid var(--border);}
+.carousel-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.carousel-slide{min-width:100%;aspect-ratio:16/7;overflow:hidden;}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:grayscale(10%) contrast(1.03);}
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
+.carousel-dots{display:flex;gap:8px;align-items:center;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:0.5px solid var(--border-hover);cursor:pointer;transition:background .25s,transform .2s;}
+.carousel-dot.active{background:var(--gold);transform:scale(1.35);}
+.carousel-arrows{display:flex;gap:10px;}
+.carousel-btn{width:38px;height:38px;border:0.5px solid var(--border);border-radius:50%;background:var(--bg-2);color:var(--text-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.carousel-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-faint);}
+.carousel-btn svg{width:14px;height:14px;}
+  
+@media(max-width:1100px){
+  nav{padding:18px 28px;}
+  .hero-wrap{grid-template-columns:1fr;padding:120px 28px 60px;gap:40px;}
+  .hero-right{display:grid;grid-template-columns:repeat(3,1fr);}
+  section{padding:72px 28px;}
+  .bento-grid{grid-template-columns:1fr;}
+  .card-lg,.card-md,.card-sm{grid-column:span 1;}
+  .expertise-inner{grid-template-columns:repeat(2,1fr);gap:32px;}
+  .expertise-col{border-right:none;padding:0;}
+  .about-grid{grid-template-columns:1fr;gap:60px;}
+  .about-photo-frame img{aspect-ratio:4/3;}
+  .insights-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:20px;text-align:center;}
+.testimonials-grid{grid-template-columns:1fr;gap:36px;}
+  .testimonial-tabs{flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:10px;padding-bottom:8px;}
+  .testimonial-tabs::-webkit-scrollbar{display:none;}
+  .testimonial-tab{flex-shrink:0;min-width:200px;}
+  .carousel-section{padding:60px 28px;}
+  .carousel-slide{aspect-ratio:16/8;}
+}
 
-  @media(max-width:1100px){
-    nav{padding:18px 28px;}
-    .hero-wrap{grid-template-columns:1fr;padding:120px 28px 60px;gap:40px;}
-    .hero-right{display:grid;grid-template-columns:repeat(3,1fr);}
-    section{padding:72px 28px;}
-    .expertise-inner{grid-template-columns:repeat(2,1fr);gap:32px;}
-    .expertise-col{border-right:none;padding:0;}
-    .about-grid{grid-template-columns:1fr;gap:60px;}
-    .about-photo-frame img{aspect-ratio:4/3;}
-    .insights-grid{grid-template-columns:1fr;}
-    footer{flex-direction:column;gap:20px;text-align:center;}
-    .testimonials-grid{grid-template-columns:1fr;gap:36px;}
-    .testimonial-tabs{flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:10px;padding-bottom:8px;}
-    .testimonial-tabs::-webkit-scrollbar{display:none;}
-    .testimonial-tab{flex-shrink:0;min-width:200px;}
-    .carousel-section{padding:60px 28px;}
-    .carousel-slide{aspect-ratio:16/8;}
+@media(max-width:600px){
+  /* 1. Bulletproof Mobile Navigation (Grid Layout) */
+  nav { padding: 16px 20px !important; display: grid !important; grid-template-columns: auto auto !important; gap: 12px 0 !important; align-items: center !important; justify-content: space-between !important; }
+  .nav-logo { grid-column: 1 / 2 !important; white-space: nowrap !important; }
+  .nav-cta { grid-column: 2 / 3 !important; justify-self: end !important; padding: 8px 14px !important; font-size: 9px !important; }
+  .nav-links { grid-column: 1 / 3 !important; display: flex !important; width: 100% !important; justify-content: flex-start !important; gap: 20px !important; margin: 0 !important; padding: 12px 0 4px !important; border-top: 0.5px solid var(--border) !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  .nav-links::-webkit-scrollbar { display: none !important; }
+  .nav-links li { flex-shrink: 0 !important; } 
+  .nav-links a { font-size: 10px !important; white-space: nowrap !important; }
+  .nav-popup { display: none !important; 
+             .testimonials-section{padding:60px 20px;}
+  .testimonial-tabs{flex-direction:row;overflow-x:auto;gap:8px;}
+  .testimonial-tab{min-width:170px;padding:14px 16px;}
+  .carousel-section{padding:48px 0;}
+  .carousel-inner{padding:0 20px;}
+  .carousel-slide{aspect-ratio:4/3;}
+             }
+
+  /* Footer */
+  footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
+
+  /* 2. Fix Hero Overlap & Typography */
+  .hero-wrap { padding: 170px 20px 60px !important; gap: 40px !important; }
+  .hero-right { grid-template-columns: 1fr !important; }
+  h1 { font-size: clamp(2.5rem, 9vw, 3.5rem) !important; line-height: 1.1 !important; }
+  .section-inner { padding: 60px 20px !important; }
+
+  /* 3. FORCE FEATURED PROJECTS TO STACK */
+  .projects-grid, .featured-grid, .services-grid, .home-projects-grid, div[style*="grid-template-columns:repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
   }
 
-  @media(max-width:600px){
-    nav{padding:16px 20px !important;display:grid !important;grid-template-columns:auto auto !important;gap:12px 0 !important;align-items:center !important;justify-content:space-between !important;}
-    .nav-logo{grid-column:1/2 !important;white-space:nowrap !important;}
-    .nav-cta{grid-column:2/3 !important;justify-self:end !important;padding:8px 14px !important;font-size:9px !important;}
-    .nav-links{grid-column:1/3 !important;display:flex !important;width:100% !important;justify-content:flex-start !important;gap:20px !important;margin:0 !important;padding:12px 0 4px !important;border-top:0.5px solid var(--border) !important;overflow-x:auto !important;-webkit-overflow-scrolling:touch !important;}
-    .nav-links::-webkit-scrollbar{display:none !important;}
-    .nav-links li{flex-shrink:0 !important;}
-    .nav-links a{font-size:10px !important;white-space:nowrap !important;}
-    .nav-popup{display:none !important;}
-    footer{flex-direction:column;gap:16px;text-align:center;padding:28px 20px;}
-    .hero-wrap{padding:170px 20px 60px !important;gap:40px !important;}
-    .hero-right{grid-template-columns:1fr !important;}
-    h1{font-size:clamp(2.5rem,9vw,3.5rem) !important;line-height:1.1 !important;}
-    .section-inner{padding:60px 20px !important;}
-    .projects-grid,.featured-grid,.services-grid,.home-projects-grid,div[style*="grid-template-columns:repeat(3, 1fr)"]{grid-template-columns:1fr !important;gap:2rem !important;}
-    .about-grid{grid-template-columns:1fr !important;display:grid !important;gap:40px !important;}
-    .about-photo-frame{max-width:320px !important;margin:0 auto !important;}
-    .about-photo-frame img{object-position:center 45% !important;}
-    img,.project-card-image{max-width:100% !important;height:auto !important;}
-    .testimonials-section{padding:60px 20px;}
-    .testimonial-tabs{flex-direction:row;overflow-x:auto;gap:8px;}
-    .testimonial-tab{min-width:170px;padding:14px 16px;}
-    .carousel-section{padding:48px 0;}
-    .carousel-inner{padding:0 20px;}
-    .carousel-slide{aspect-ratio:4/3;}
-  }
+  /* 4. Headshot Fix (Back on top, Face perfectly visible!) */
+  .about-grid { grid-template-columns: 1fr !important; display: grid !important; gap: 40px !important; }
+  .about-photo-frame { max-width: 320px !important; margin: 0 auto !important; }
+  .about-photo-frame img { object-position: center 45% !important; }
 
-  @media(hover:none),(pointer:coarse),(max-width:800px){
-    .cursor,.cursor-ring{display:none !important;opacity:0 !important;visibility:hidden !important;}
-    *{cursor:auto !important;}
-  }
+  /* 5. Ensure images don't break out */
+  img, .project-card-image { max-width: 100% !important; height: auto !important; }
+}
+
+/* ── ABSOLUTE CURSOR KILL-SWITCH FOR MOBILE ── */
+@media (hover: none), (pointer: coarse), (max-width: 800px) {
+  .cursor, .cursor-ring { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+  * { cursor: auto !important; } 
+}
 </style>
 </head>
 <body>
@@ -270,7 +291,6 @@
   <a href="contact.html" class="nav-cta">Get in Touch</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero-wrap">
   <div class="hero-left">
     <div class="eyebrow">
@@ -279,7 +299,7 @@
     </div>
     <h1>Strategy.<br>Evidence.<br><span class="ig">Impact.</span></h1>
     <p class="hero-body">
-      From EV market entry in Italy to digital growth for Irish nonprofits—I work where rigorous analysis meets real-world implementation. Recently delivered an AI predictive maintenance strategy for Accenture in the utilities sector.
+      From EV market entry in Italy to digital growth for Irish nonprofits, I work where rigorous analysis meets real-world implementation. Recently delivered an AI predictive maintenance strategy for Accenture in the utilities sector.
     </p>
     <div class="cta-row">
       <a href="work.html" class="btn-primary">View Case Studies</a>
@@ -291,9 +311,9 @@
   </div>
   <div class="hero-right">
     <div class="glass-card">
-      <div class="stat-num">6</div>
+      <div class="stat-num">5+</div>
       <div class="stat-label">Consulting Projects</div>
-      <div class="stat-desc">Kempower · SEQ Ireland · RCED · Accenture · Ecomm Edge · Burnout Course</div>
+      <div class="stat-desc">Kempower · SEQ Ireland · RCED · Accenture · Ecomm Edge</div>
     </div>
     <div class="glass-card">
       <div class="stat-num">B.Com</div>
@@ -303,26 +323,24 @@
     <div class="glass-card">
       <div class="stat-num">180DC</div>
       <div class="stat-label">Consulting Society</div>
-      <div class="stat-desc">Senior Associate · CSR &amp; social impact engagements</div>
+      <div class="stat-desc">Senior Associate · CSR & social impact engagements</div>
     </div>
   </div>
 </div>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track">
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Delivered</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Certifications</span><span class="ticker-val">Google Cloud Digital Leader · Intro to AI &amp; ML (Google) · E-Commerce Grade A+ (Infosys)</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Certifications</span><span class="ticker-val">Google Cloud Digital Leader · Intro to AI & ML (Google) · E-Commerce Grade A+ (Infosys)</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Open to</span><span class="ticker-val">Graduate Programmes · Full-time Consulting · Dublin / Remote / Relocate</span></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Delivered</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
+   <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Delivered</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
   </div>
 </div>
 
-<!-- FEATURED PROJECTS -->
 <div class="section-wrap">
 <section>
   <div class="section-header reveal">
@@ -332,7 +350,7 @@
     </div>
     <a href="work.html" class="section-link"><div class="section-link-arrow"></div>All projects</a>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px;" class="home-projects-grid">
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;margin-bottom:48px;" class="home-projects-grid">
 
     <a href="work.html" class="project-card reveal" style="grid-column:span 1;">
       <div>
@@ -341,22 +359,29 @@
         <p class="card-desc">Audited SEQ's digital presence against 3 competitors, identified 5 website gaps, and designed a 60:40 Google-to-Meta ad strategy projecting 10–15% uplift in qualified enquiries. Built a tiered pricing model and expansion plan.</p>
       </div>
       <div class="card-footer">
-        <div class="card-chips"><span class="chip">Digital Audit</span><span class="chip">Paid Media</span></div>
+        <div class="card-chips">
+          <span class="chip">Digital Audit</span><span class="chip">Paid Media</span>
+        </div>
         <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
       </div>
     </a>
 
     <a href="work.html" class="project-card reveal reveal-delay-1" style="grid-column:span 1;">
       <div>
-        <div class="card-tag">AI Strategy · Utilities</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#7ecb9a;background:rgba(126,203,154,0.08);border:0.5px solid rgba(126,203,154,0.28);padding:4px 10px;border-radius:20px;margin-bottom:12px;">
+          <div style="width:5px;height:5px;border-radius:50%;background:#7ecb9a;"></div> Delivered
+        </div>
+        <div class="card-tag">AI Predictive Maintenance · Utilities</div>
         <h3 class="card-title">Accenture AI Predictive Maintenance</h3>
         <p class="card-desc">Delivered research analysis and client presentation on how AI-driven predictive maintenance reduces unplanned downtime for utilities providers. Covered data readiness barriers, deployment frameworks, and organisational change conditions.</p>
       </div>
       <div class="card-footer">
-        <div class="card-chips"><span class="chip">AI Strategy</span><span class="chip">Utilities</span></div>
+        <div class="card-chips">
+          <span class="chip">AI Strategy</span><span class="chip">Utilities</span>
+        </div>
         <div style="display:flex;gap:8px;align-items:center;">
-          <a href="./accenture_report.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;background:transparent;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Report</a>
-          <a href="./accenture_pitch.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;background:transparent;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Deck</a>
+          <a href="./accenture_report.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Report</a>
+          <a href="./accenture_pitch.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Deck</a>
           <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
         </div>
       </div>
@@ -369,12 +394,15 @@
         <p class="card-desc">Led internal analysis for a Finnish EV charging manufacturer's entry into Italy. Applied VRIO to identify core competitive advantages and designed a phased 0–36 month go-to-market via three strategic local partnerships.</p>
       </div>
       <div class="card-footer">
-        <div class="card-chips"><span class="chip">VRIO</span><span class="chip">Go-to-Market</span></div>
+        <div class="card-chips">
+          <span class="chip">VRIO</span><span class="chip">Go-to-Market</span>
+        </div>
         <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
       </div>
     </a>
 
   </div>
+
   <div class="reveal" style="text-align:center;">
     <a href="work.html" style="display:inline-flex;align-items:center;gap:12px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text);background:var(--bg-2);border:0.5px solid var(--border);padding:16px 36px;border-radius:2px;text-decoration:none;transition:all .3s;cursor:none;" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)';" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)';">
       View All Projects
@@ -384,7 +412,6 @@
 </section>
 </div>
 
-<!-- EXPERTISE STRIP -->
 <div class="expertise-strip">
   <div class="expertise-inner">
     <div class="expertise-col reveal">
@@ -400,7 +427,7 @@
     <div class="expertise-col reveal reveal-delay-2">
       <div class="expertise-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5" stroke="currentColor" stroke-width="1"/><path d="M8 4V8L11 10" stroke="currentColor" stroke-width="1"/></svg></div>
       <div class="expertise-title">Project Management</div>
-      <p class="expertise-desc">WBS design, Gantt scheduling, and stakeholder governance frameworks. Built an interactive PM Lab page as part of UCD Smurfit's Project Management module.</p>
+      <p class="expertise-desc">WBS design, Gantt scheduling, and stakeholder governance frameworks. Currently building an interactive PM Lab page as part of UCD Smurfit's Project Management module.</p>
     </div>
     <div class="expertise-col reveal reveal-delay-3">
       <div class="expertise-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 6V10L8 14L2 10V6L8 2Z" stroke="currentColor" stroke-width="1"/></svg></div>
@@ -410,7 +437,6 @@
   </div>
 </div>
 
-<!-- ABOUT -->
 <div class="section-wrap">
 <section>
   <div class="about-grid">
@@ -478,7 +504,93 @@
 </section>
 </div>
 
-<!-- VISUAL JOURNEY CAROUSEL — after About, before Testimonials -->
+<div class="section-wrap">
+<section>
+  <div class="section-header reveal">
+    <div>
+      <div class="section-eyebrow">Insights</div>
+      <h2 class="section-title">Strategic Perspectives</h2>
+    </div>
+    <a href="insights.html" class="section-link"><div class="section-link-arrow"></div>Read all</a>
+  </div>
+  <div class="insights-grid">
+    <a href="insights.html" class="insight-card reveal">
+      <div class="insight-meta">Market Strategy · 5 min read</div>
+      <div class="insight-title">Why Italy's EV Gap Is a Structural Problem, Not a Technology One</div>
+      <p class="insight-preview">Italy is one of Europe's most car-dependent economies, yet its charging infrastructure lags far behind its northern neighbours despite clear EU 2030 targets. What surprised me during the Kempower engagement, and what it reveals about the limits of policy without market readiness.</p>
+      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
+    </a>
+    <a href="insights.html" class="insight-card reveal reveal-delay-1">
+      <div class="insight-meta">Digital Growth · 4 min read</div>
+      <div class="insight-title">The NGO Digital Gap: Why the Organisations That Need Visibility Most Have the Least</div>
+      <p class="insight-preview">Irish nonprofits consistently underinvest in digital relative to comparable commercial organisations. A practical framework for closing that gap with limited budgets, drawn from the SEQ Ireland engagement.</p>
+      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
+    </a>
+    <a href="insights.html" class="insight-card reveal reveal-delay-2">
+      <div class="insight-meta">Social Impact · 3 min read</div>
+      <div class="insight-title">How to Pitch CSR to a CFO: What Most Fundraisers Get Wrong</div>
+      <p class="insight-preview">Corporate donors don't fund causes they fund business cases. How applying basic consulting logic to RCED's fundraising pitch reframed the conversation from charity to strategic investment, and why that distinction matters.</p>
+      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
+    </a>
+  </div>
+</section>
+</div>
+
+  <!-- ── TESTIMONIALS ── -->
+<div class="section-wrap">
+<section class="testimonials-section">
+  <div class="section-header reveal" style="margin-bottom:48px;padding-bottom:24px;border-bottom:0.5px solid var(--border);">
+    <div>
+      <div class="section-eyebrow">References</div>
+      <h2 class="section-title">In Their Words</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-quote-area reveal">
+      <div class="testimonial-quote active" id="tq-0">
+        <blockquote>Abhinav brought genuine strategic rigour to every stage of the Kempower project. He didn't just apply frameworks—he interrogated them, challenged assumptions, and pushed the team toward sharper, more defensible conclusions. A consultant who thinks before he presents.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Fionn Lawlor</span>
+          <span class="t-role">MSc Classmate · UCD Michael Smurfit · Kempower Consulting Project</span>
+        </div>
+      </div>
+      <div class="testimonial-quote" id="tq-1">
+        <blockquote>What stands out about Abhinav is his ability to translate complex research into something a client can actually act on. His work on the Italian market entry was structured, well-evidenced, and genuinely useful—exactly what consulting should produce.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Tekin Yoldas</span>
+          <span class="t-role">MSc Classmate · UCD Michael Smurfit · Kempower Consulting Project</span>
+        </div>
+      </div>
+      <div class="testimonial-quote" id="tq-2">
+        <blockquote>Abhinav showed real maturity in how he approached client work at 180DC. He understood that the RCED engagement wasn't just an academic exercise—it was a real organisation with real stakes. His CSR pitch reframe was one of the strongest pieces of work our chapter produced that year.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Sandip Tandon</span>
+          <span class="t-role">Senior Associate · 180 Degrees Consulting · MNC Chapter · RCED Engagement</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-tabs reveal reveal-delay-1" id="testimonial-tabs">
+      <button class="testimonial-tab active" data-index="0">
+        <div class="tab-name">Fionn Lawlor</div>
+        <div class="tab-role">MSc Classmate · UCD Smurfit</div>
+        <div class="tab-indicator"></div>
+      </button>
+      <button class="testimonial-tab" data-index="1">
+        <div class="tab-name">Tekin Yoldas</div>
+        <div class="tab-role">MSc Classmate · UCD Smurfit</div>
+        <div class="tab-indicator"></div>
+      </button>
+      <button class="testimonial-tab" data-index="2">
+        <div class="tab-name">Sandip Tandon</div>
+        <div class="tab-role">Senior Associate · 180DC</div>
+        <div class="tab-indicator"></div>
+      </button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ── VISUAL JOURNEY CAROUSEL ── -->
 <div class="carousel-section section-wrap">
   <div class="carousel-inner">
     <span class="carousel-eyebrow reveal">Visual Journey</span>
@@ -506,76 +618,6 @@
     </div>
   </div>
 </div>
-
-<!-- TESTIMONIALS -->
-<div class="section-wrap">
-<section class="testimonials-section">
-  <div class="section-header reveal" style="margin-bottom:48px;padding-bottom:24px;border-bottom:0.5px solid var(--border);">
-    <div>
-      <div class="section-eyebrow">References</div>
-      <h2 class="section-title">In Their Words</h2>
-    </div>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-quote-area reveal">
-<div class="testimonial-quote active" id="tq-0">
-        <blockquote>Abhinav has consistently distinguished himself as a proactive, tech-forward, and highly adaptable young professional. He approaches every challenge with curiosity and energy — exceptionally coachable, taking direction with precision and the proactivity to build upon guidance independently. Beyond his analytical capabilities, he is a natural networker with the emotional intelligence to navigate professional environments with ease. I have no doubt he will be a valuable asset to any Project Controls or Management Consulting team.</blockquote>
-        <div class="testimonial-attribution">
-          <span class="t-name">Fionn Lawlor</span>
-          <span class="t-role">GLP Programme Mentor · UCD Michael Smurfit</span>
-        </div>
-      </div>
-
-      <div class="testimonial-quote" id="tq-1">
-        <blockquote>Abhinav is a truly valued member of our after-school team at Kids Inc. In a fast-paced environment that requires high energy and constant communication, he is incredibly dependable and always carries himself with a positive, polite attitude. His ability to connect with people and handle responsibilities with care is exactly what makes him such a great colleague.</blockquote>
-        <div class="testimonial-attribution">
-          <span class="t-name">Tekin Yoldas</span>
-          <span class="t-role">Area Manager · Kids Inc, Dublin</span>
-        </div>
-      </div>
-
-      <div class="testimonial-quote" id="tq-2">
-        <blockquote>Abhinav demonstrated strong analytical ability and a proactive mindset during his time with our supply chain team. He quickly adapted to processes, handled responsibilities with precision, and consistently showed a willingness to learn. His reliability, attention to detail, and collaborative approach made him a valuable contributor to the team.</blockquote>
-        <div class="testimonial-attribution">
-          <span class="t-name">Sandip Tandon</span>
-          <span class="t-role">Partner · Aramco Engineers</span>
-        </div>
-      </div>
-
-<!-- INSIGHTS -->
-<div class="section-wrap">
-<section>
-  <div class="section-header reveal">
-    <div>
-      <div class="section-eyebrow">Insights</div>
-      <h2 class="section-title">Strategic Perspectives</h2>
-    </div>
-    <a href="insights.html" class="section-link"><div class="section-link-arrow"></div>Read all</a>
-  </div>
-  <div class="insights-grid">
-    <a href="insights.html" class="insight-card reveal">
-      <div class="insight-meta">Market Strategy · 5 min read</div>
-      <div class="insight-title">Why Italy's EV Gap Is a Structural Problem, Not a Technology One</div>
-      <p class="insight-preview">Italy is one of Europe's most car-dependent economies, yet its charging infrastructure lags far behind its northern neighbours despite clear EU 2030 targets. What surprised me during the Kempower engagement, and what it reveals about the limits of policy without market readiness.</p>
-      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
-    </a>
-    <a href="insights.html" class="insight-card reveal reveal-delay-1">
-      <div class="insight-meta">Digital Growth · 4 min read</div>
-      <div class="insight-title">The NGO Digital Gap: Why the Organisations That Need Visibility Most Have the Least</div>
-      <p class="insight-preview">Irish nonprofits consistently underinvest in digital relative to comparable commercial organisations. A practical framework for closing that gap with limited budgets, drawn from the SEQ Ireland engagement.</p>
-      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
-    </a>
-    <a href="insights.html" class="insight-card reveal reveal-delay-2">
-      <div class="insight-meta">Social Impact · 3 min read</div>
-      <div class="insight-title">How to Pitch CSR to a CFO: What Most Fundraisers Get Wrong</div>
-      <p class="insight-preview">Corporate donors don't fund causes—they fund business cases. How applying basic consulting logic to RCED's fundraising pitch reframed the conversation from charity to strategic investment, and why that distinction matters.</p>
-      <div class="insight-read"><div style="width:16px;height:1px;background:currentColor;"></div>Read article</div>
-    </a>
-  </div>
-</section>
-</div>
-
-<!-- CTA BAND -->
 <div class="cta-band">
   <h2>Let's Work Together</h2>
   <p>Open to graduate programmes, consulting roles, and project-based engagements. Based in Dublin—available to relocate or work remotely.</p>
@@ -613,16 +655,15 @@ if (window.innerWidth > 800 && window.matchMedia("(pointer: fine)").matches) {
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
   (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a);})();
 } else {
-  if(cursor) cursor.style.display='none';
-  if(ring) ring.style.display='none';
+  if(cursor) cursor.style.display = 'none';
+  if(ring) ring.style.display = 'none';
 }
 
 // ── SCROLL ANIMATIONS ──
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// ── TESTIMONIALS ──
+  // ── TESTIMONIALS ──
 (function(){
   const tabs=document.querySelectorAll('.testimonial-tab');
   const quotes=document.querySelectorAll('.testimonial-quote');
@@ -668,4 +709,6 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 </script>
 </body>
-</html> 
+</html>  
+</body>
+</html>
