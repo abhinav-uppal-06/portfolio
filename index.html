@@ -166,6 +166,45 @@
   @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
   ::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
 
+  /* ── TESTIMONIALS ── */
+.testimonials-section{max-width:1400px;margin:0 auto;padding:96px 48px;}
+.testimonials-grid{display:grid;grid-template-columns:1fr 320px;gap:64px;align-items:start;}
+.testimonial-quote-area{position:relative;min-height:220px;}
+.testimonial-quote{position:absolute;top:0;left:0;opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.testimonial-quote.active{opacity:1;transform:translateY(0);pointer-events:auto;position:relative;}
+.testimonial-quote blockquote{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-weight:400;font-style:italic;color:var(--text);line-height:1.65;margin-bottom:28px;}
+.testimonial-quote blockquote::before{content:'\201C';font-size:72px;color:var(--gold);line-height:0;vertical-align:-28px;margin-right:4px;font-style:normal;}
+.testimonial-attribution{display:flex;flex-direction:column;gap:3px;}
+.testimonial-attribution .t-name{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--gold);letter-spacing:.06em;}
+.testimonial-attribution .t-role{font-size:11.5px;font-weight:300;color:var(--text-muted);}
+.testimonial-tabs{display:flex;flex-direction:column;gap:10px;padding-top:6px;}
+.testimonial-tab{background:var(--bg-2);border:0.5px solid var(--border);border-radius:4px;padding:18px 20px;cursor:pointer;text-align:left;transition:border-color .25s,background .25s;}
+.testimonial-tab:hover{border-color:var(--border-hover);}
+.testimonial-tab.active{border-color:var(--gold);background:var(--gold-faint);}
+.testimonial-tab .tab-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px;transition:color .2s;}
+.testimonial-tab.active .tab-name{color:var(--gold);}
+.testimonial-tab .tab-role{font-size:11px;font-weight:300;color:var(--text-muted);}
+.testimonial-tab .tab-indicator{width:20px;height:1px;background:var(--gold);margin-top:10px;transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.testimonial-tab.active .tab-indicator{transform:scaleX(1);}
+
+/* ── CAROUSEL ── */
+.carousel-section{border-top:0.5px solid var(--border);padding:80px 48px;position:relative;z-index:1;}
+.carousel-inner{max-width:1400px;margin:0 auto;}
+.carousel-eyebrow{font-family:var(--mono);font-size:9.5px;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
+.carousel-title{font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:400;color:var(--text);margin-bottom:36px;}
+.carousel-track-wrap{position:relative;overflow:hidden;border-radius:4px;border:0.5px solid var(--border);}
+.carousel-track{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+.carousel-slide{min-width:100%;aspect-ratio:16/7;overflow:hidden;}
+.carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:grayscale(10%) contrast(1.03);}
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
+.carousel-dots{display:flex;gap:8px;align-items:center;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:var(--border);border:0.5px solid var(--border-hover);cursor:pointer;transition:background .25s,transform .2s;}
+.carousel-dot.active{background:var(--gold);transform:scale(1.35);}
+.carousel-arrows{display:flex;gap:10px;}
+.carousel-btn{width:38px;height:38px;border:0.5px solid var(--border);border-radius:50%;background:var(--bg-2);color:var(--text-muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s;}
+.carousel-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-faint);}
+.carousel-btn svg{width:14px;height:14px;}
+  
 @media(max-width:1100px){
   nav{padding:18px 28px;}
   .hero-wrap{grid-template-columns:1fr;padding:120px 28px 60px;gap:40px;}
@@ -179,6 +218,12 @@
   .about-photo-frame img{aspect-ratio:4/3;}
   .insights-grid{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:20px;text-align:center;}
+.testimonials-grid{grid-template-columns:1fr;gap:36px;}
+  .testimonial-tabs{flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:10px;padding-bottom:8px;}
+  .testimonial-tabs::-webkit-scrollbar{display:none;}
+  .testimonial-tab{flex-shrink:0;min-width:200px;}
+  .carousel-section{padding:60px 28px;}
+  .carousel-slide{aspect-ratio:16/8;}
 }
 
 @media(max-width:600px){
@@ -190,7 +235,14 @@
   .nav-links::-webkit-scrollbar { display: none !important; }
   .nav-links li { flex-shrink: 0 !important; } 
   .nav-links a { font-size: 10px !important; white-space: nowrap !important; }
-  .nav-popup { display: none !important; }
+  .nav-popup { display: none !important; 
+             .testimonials-section{padding:60px 20px;}
+  .testimonial-tabs{flex-direction:row;overflow-x:auto;gap:8px;}
+  .testimonial-tab{min-width:170px;padding:14px 16px;}
+  .carousel-section{padding:48px 0;}
+  .carousel-inner{padding:0 20px;}
+  .carousel-slide{aspect-ratio:4/3;}
+             }
 
   /* Footer */
   footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 20px; }
@@ -247,7 +299,7 @@
     </div>
     <h1>Strategy.<br>Evidence.<br><span class="ig">Impact.</span></h1>
     <p class="hero-body">
-      From EV market entry in Italy to digital growth for Irish nonprofits—I work where rigorous analysis meets real-world implementation. Currently consulting with Accenture on AI-driven predictive maintenance in the utilities sector.
+      From EV market entry in Italy to digital growth for Irish nonprofits, I work where rigorous analysis meets real-world implementation. Recently delivered an AI predictive maintenance strategy for Accenture in the utilities sector.
     </p>
     <div class="cta-row">
       <a href="work.html" class="btn-primary">View Case Studies</a>
@@ -278,12 +330,12 @@
 
 <div class="ticker-wrap">
   <div class="ticker-track">
-    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Current</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
+    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Delivered</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Certifications</span><span class="ticker-val">Google Cloud Digital Leader · Intro to AI & ML (Google) · E-Commerce Grade A+ (Infosys)</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Open to</span><span class="ticker-val">Graduate Programmes · Full-time Consulting · Dublin / Remote / Relocate</span></div>
-    <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Current</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
+   <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Delivered</span><span class="ticker-val">Accenture · AI Predictive Maintenance · Utilities Sector</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Frameworks</span><span class="ticker-val">VRIO · Porter's Five Forces · PESTLE · CAGE · McKinsey 7Ps · Ansoff</span></div>
     <div class="ticker-item"><div class="ticker-dot"></div><span class="ticker-label">Tools</span><span class="ticker-val">Excel (Advanced) · R · Canva · PowerPoint · Google Cloud Platform</span></div>
   </div>
@@ -316,16 +368,22 @@
 
     <a href="work.html" class="project-card reveal reveal-delay-1" style="grid-column:span 1;">
       <div>
-        <div class="badge-progress"><div class="badge-dot"></div> In Progress</div>
-        <div class="card-tag">AI Strategy · Utilities</div>
+        <div style="display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#7ecb9a;background:rgba(126,203,154,0.08);border:0.5px solid rgba(126,203,154,0.28);padding:4px 10px;border-radius:20px;margin-bottom:12px;">
+          <div style="width:5px;height:5px;border-radius:50%;background:#7ecb9a;"></div> Delivered
+        </div>
+        <div class="card-tag">AI Predictive Maintenance · Utilities</div>
         <h3 class="card-title">Accenture AI Predictive Maintenance</h3>
-        <p class="card-desc">Developing a research analysis on how AI-driven predictive maintenance can reduce unplanned downtime for utilities providers. Examining data readiness barriers, deployment frameworks, and organisational conditions.</p>
+        <p class="card-desc">Delivered research analysis and client presentation on how AI-driven predictive maintenance reduces unplanned downtime for utilities providers. Covered data readiness barriers, deployment frameworks, and organisational change conditions.</p>
       </div>
       <div class="card-footer">
         <div class="card-chips">
           <span class="chip">AI Strategy</span><span class="chip">Utilities</span>
         </div>
-        <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <a href="./accenture_report.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Report</a>
+          <a href="./accenture_pitch.pdf" target="_blank" onclick="event.stopPropagation();" style="font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:0.5px solid var(--gold-dim);padding:5px 10px;border-radius:2px;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='var(--gold-faint)'" onmouseout="this.style.background='transparent'">Deck</a>
+          <div class="card-arrow"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1"/></svg></div>
+        </div>
       </div>
     </a>
 
@@ -478,6 +536,88 @@
 </section>
 </div>
 
+  <!-- ── TESTIMONIALS ── -->
+<div class="section-wrap">
+<section class="testimonials-section">
+  <div class="section-header reveal" style="margin-bottom:48px;padding-bottom:24px;border-bottom:0.5px solid var(--border);">
+    <div>
+      <div class="section-eyebrow">References</div>
+      <h2 class="section-title">In Their Words</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-quote-area reveal">
+      <div class="testimonial-quote active" id="tq-0">
+        <blockquote>Abhinav brought genuine strategic rigour to every stage of the Kempower project. He didn't just apply frameworks—he interrogated them, challenged assumptions, and pushed the team toward sharper, more defensible conclusions. A consultant who thinks before he presents.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Fionn Lawlor</span>
+          <span class="t-role">MSc Classmate · UCD Michael Smurfit · Kempower Consulting Project</span>
+        </div>
+      </div>
+      <div class="testimonial-quote" id="tq-1">
+        <blockquote>What stands out about Abhinav is his ability to translate complex research into something a client can actually act on. His work on the Italian market entry was structured, well-evidenced, and genuinely useful—exactly what consulting should produce.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Tekin Yoldas</span>
+          <span class="t-role">MSc Classmate · UCD Michael Smurfit · Kempower Consulting Project</span>
+        </div>
+      </div>
+      <div class="testimonial-quote" id="tq-2">
+        <blockquote>Abhinav showed real maturity in how he approached client work at 180DC. He understood that the RCED engagement wasn't just an academic exercise—it was a real organisation with real stakes. His CSR pitch reframe was one of the strongest pieces of work our chapter produced that year.</blockquote>
+        <div class="testimonial-attribution">
+          <span class="t-name">Sandip Tandon</span>
+          <span class="t-role">Senior Associate · 180 Degrees Consulting · MNC Chapter · RCED Engagement</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-tabs reveal reveal-delay-1" id="testimonial-tabs">
+      <button class="testimonial-tab active" data-index="0">
+        <div class="tab-name">Fionn Lawlor</div>
+        <div class="tab-role">MSc Classmate · UCD Smurfit</div>
+        <div class="tab-indicator"></div>
+      </button>
+      <button class="testimonial-tab" data-index="1">
+        <div class="tab-name">Tekin Yoldas</div>
+        <div class="tab-role">MSc Classmate · UCD Smurfit</div>
+        <div class="tab-indicator"></div>
+      </button>
+      <button class="testimonial-tab" data-index="2">
+        <div class="tab-name">Sandip Tandon</div>
+        <div class="tab-role">Senior Associate · 180DC</div>
+        <div class="tab-indicator"></div>
+      </button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ── VISUAL JOURNEY CAROUSEL ── -->
+<div class="carousel-section section-wrap">
+  <div class="carousel-inner">
+    <span class="carousel-eyebrow reveal">Visual Journey</span>
+    <div class="carousel-title reveal">Behind the Work</div>
+    <div class="carousel-track-wrap reveal">
+      <div class="carousel-track" id="carouselTrack">
+        <div class="carousel-slide"><img src="./at_ucd.jpg?v=1" alt="At UCD Smurfit" loading="lazy"></div>
+        <div class="carousel-slide"><img src="./accenture_presentation_1.jpg?v=1" alt="Accenture Client Presentation" loading="lazy"></div>
+        <div class="carousel-slide"><img src="./accenture_presentation_2.jpg?v=1" alt="Accenture Presentation Team" loading="lazy"></div>
+        <div class="carousel-slide"><img src="./about_kempower.jpg?v=1" alt="Kempower Project" loading="lazy"></div>
+        <div class="carousel-slide"><img src="./combrosia.jpg?v=1" alt="Combrosia Society" loading="lazy"></div>
+        <div class="carousel-slide"><img src="./filmistaan.jpeg?v=1" alt="Filmistaan" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <div class="carousel-dots" id="carouselDots"></div>
+      <div class="carousel-arrows">
+        <button class="carousel-btn" id="carouselPrev" aria-label="Previous">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+        <button class="carousel-btn" id="carouselNext" aria-label="Next">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="cta-band">
   <h2>Let's Work Together</h2>
   <p>Open to graduate programmes, consulting roles, and project-based engagements. Based in Dublin—available to relocate or work remotely.</p>
@@ -523,6 +663,50 @@ if (window.innerWidth > 800 && window.matchMedia("(pointer: fine)").matches) {
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>60));
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  // ── TESTIMONIALS ──
+(function(){
+  const tabs=document.querySelectorAll('.testimonial-tab');
+  const quotes=document.querySelectorAll('.testimonial-quote');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const idx=parseInt(tab.dataset.index,10);
+      tabs.forEach(t=>t.classList.remove('active'));
+      quotes.forEach(q=>q.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tq-'+idx).classList.add('active');
+    });
+  });
+})();
+
+// ── CAROUSEL ──
+(function(){
+  const track=document.getElementById('carouselTrack');
+  const dotsWrap=document.getElementById('carouselDots');
+  if(!track)return;
+  const slides=track.querySelectorAll('.carousel-slide');
+  const total=slides.length;
+  let current=0;
+  slides.forEach((_,i)=>{
+    const d=document.createElement('button');
+    d.className='carousel-dot'+(i===0?' active':'');
+    d.setAttribute('aria-label','Go to slide '+(i+1));
+    d.addEventListener('click',()=>goTo(i));
+    dotsWrap.appendChild(d);
+  });
+  function goTo(n){
+    current=(n+total)%total;
+    track.style.transform='translateX(-'+(current*100)+'%)';
+    document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+  }
+  document.getElementById('carouselPrev').addEventListener('click',()=>goTo(current-1));
+  document.getElementById('carouselNext').addEventListener('click',()=>goTo(current+1));
+  let startX=0;
+  track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',e=>{
+    const diff=startX-e.changedTouches[0].clientX;
+    if(Math.abs(diff)>40)goTo(diff>0?current+1:current-1);
+  });
+})();
 </script>
 </body>
 </html>  
